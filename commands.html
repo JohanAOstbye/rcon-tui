@@ -1,0 +1,864 @@
+-_resetgamestats,;,Erases current game stats and writes out a blank stats fileServer only
+-ai_clear_bad_links,;,Clears bits set on nav links indicating link is unusableServer only
+-ai_debug_los,;,Default: 0, NPC Line-Of-Sight debug mode. If 1, solid entities that block NPC LOC will be highlighted
+with white bounding boxes. If 2, it'll show non-solid entities that would do it if they were solid.Requires sv_cheats
+1Server only
+-ai_debug_node_connect,;,Debug the attempted connection between two nodesServer only
+-ai_disable,;,Bi-passes all AI logic routines and puts all NPCs into their idle animations. Can be used to get NPCs out
+of your way and to test effect of AI logic routines on frame rateRequires sv_cheats 1Server only
+-ai_drawbattlelines,;,Default: 0Requires sv_cheats 1Server only
+-ai_drop_hint,;,Drop an ai_hint at the player's current eye position.Requires sv_cheats 1Server only
+-ai_dump_hints,;,Server only
+-ai_hull,;,Controls which connections are shown when ai_show_hull or ai_show_connect commands are usedArguments: NPC
+name or classname, &lt;none&gt;=NPC under crosshairRequires sv_cheats 1Server only
+-ai_next_hull,;,Cycles through the various hull sizes. Currently selected hull size is written to the screen. Controls
+which connections are shown when ai_show_hull or ai_show_connect commands are usedArguments: -none-Requires sv_cheats
+1Server only
+-ai_nodes,;,Toggles node display. First call displays the nodes for the given network as green objects. Second call
+displays the nodes and their IDs. Nodes are color coded as follows:Green - ground nodeCyan - air nodeMagenta - climb
+nodeGrey - node not available for selected hull sizeOrange - node currently lockedRequires sv_cheats 1Server only
+-ai_report_task_timings_on_limit,;,Default: 0Server only
+-ai_resume,;,If NPC is stepping through tasks (see ai_step ) will resume normal processing.Requires sv_cheats 1Server
+only
+-ai_set_move_height_epsilon,;,Set how high AI bumps up ground walkers when checking stepsServer only
+-ai_setenabled,;,Like ai_disable but you manually specify the state (with a 0 or 1) instead of toggling it.Requires
+sv_cheats 1Server only
+-ai_show_connect,;,Displays the allowed connections between each node for the currently selected hull type. Hulls are
+color code as follows:Green - ground movement Blue - jumping movementCyan - flying movementYellow - crawling
+movementMagenta - climbing movementRed - connection disabledRequires sv_cheats 1Server only
+-ai_show_connect_crawl,;,Displays the allowed connections between each node for the currently selected hull type. Hulls
+are color code as follows:Green - ground movement Blue - jumping movementCyan - flying movementYellow - crawling
+movementMagenta - climbing movementRed - connection disabledRequires sv_cheats 1Server only
+-ai_show_connect_fly,;,Displays the allowed connections between each node for the currently selected hull type. Hulls
+are color code as follows:Green - ground movement Blue - jumping movementCyan - flying movementYellow - crawling
+movementMagenta - climbing movementRed - connection disabledRequires sv_cheats 1Server only
+-ai_show_connect_jump,;,Displays the allowed connections between each node for the currently selected hull type. Hulls
+are color code as follows:Green - ground movement Blue - jumping movementCyan - flying movementYellow - crawling
+movementMagenta - climbing movementRed - connection disabledRequires sv_cheats 1Server only
+-ai_show_graph_connect,;,Toggles graph connection display for the node that the player is looking at. Nodes that are
+connected to the selected node by the net graph will be drawn in red with magenta lines connecting to the selected node.
+Nodes that are not connected via the net graph from the selected node will be drawn in blue.Requires sv_cheats 1Server
+only
+-ai_show_grid,;,Draw a grid on the floor where looking.Requires sv_cheats 1Server only
+-ai_show_hints,;,Displays all hints as small boxesBlue - hint is available for useRed - hint is currently being used by
+an NPCOrange - hint not being used by timed outGrey - hint has been disabledRequires sv_cheats 1Server only
+-ai_show_hull,;,Displays the allowed hulls between each node for the currently selected hull type. Hulls are color code
+as follows:Green - ground movement Blue - jumping movementCyan - flying movementYellow - crawling movementMagenta -
+climbing movementArguments: -none-Requires sv_cheats 1Server only
+-ai_show_node,;,Highlight the specified nodeRequires sv_cheats 1Server onlyModified in v1.34.6.6
+-ai_show_visibility,;,Toggles visibility display for the node that the player is looking at. Nodes that are visible from
+the selected node will be drawn in red with yellow lines connecting to the selected node. Nodes that are not visible
+from the selected node will be drawn in blue.Requires sv_cheats 1Server only
+-ai_step,;,NPCs will freeze after completing their current task. To complete the next task, use 'ai_step' again. To
+resume processing normally use 'ai_resume'Requires sv_cheats 1Server only
+-ai_test_los,;,Test AI LOS from the player's POVServer only
+-ai_think_limit_label,;,Default: 0Server only
+-ai_vehicle_avoidance,;,Default: 1Requires sv_cheats 1Server only
+-ainet_generate_report,;,Generate a report to the console.Server only
+-ainet_generate_report_only,;,Generate a report to the console.Server only
+-air_density,;,Changes the density of air for drag computations.Requires sv_cheats 1Server only
+-bot_add,;,bot_add &lt;t|ct&gt; &lt;type&gt; &lt;difficulty&gt; &lt;name&gt; - Adds a bot matching the given
+criteria.Server only
+-bot_add_ct,;,bot_add_ct &lt;type&gt; &lt;difficulty&gt; &lt;name&gt; - Adds a Counter-Terrorist bot matching the given
+criteria.Server only
+-bot_add_t,;,bot_add_t &lt;type&gt; &lt;difficulty&gt; &lt;name&gt; - Adds a terrorist bot matching the given
+criteria.Server only
+-bot_all_weapons,;,Allows the bots to use all weaponsServer only
+-bot_chatter,;,Default: normalControl how bots talk. Allowed values: 'off', 'radio', 'minimal', or 'normal'.Server only
+-bot_crouch,;,Default: 0Requires sv_cheats 1Server only
+-bot_debug,;,Default: 0For internal testing purposes.Requires sv_cheats 1Server only
+-bot_debug_target,;,Default: 0For internal testing purposes.Requires sv_cheats 1Server only
+-bot_defer_to_human_goals,;,Default: 0If nonzero and there is a human on the team, the bots will not do the scenario
+tasks.Server only
+-bot_defer_to_human_items,;,Default: 1If nonzero and there is a human on the team, the bots will not get scenario
+items.Server only
+-bot_difficulty,;,Default: 1Defines the skill of bots joining the game. Values are: 0=easy, 1=normal, 2=hard,
+3=expert.Server only
+-bot_dont_shoot,;,Default: 0If nonzero, bots will not fire weapons (for debugging).Requires sv_cheats 1Server only
+-bot_freeze,;,Default: 0Requires sv_cheats 1Server only
+-bot_goto_mark,;,Sends a bot to the marked nav area (useful for testing navigation meshes)Requires sv_cheats 1Server
+only
+-bot_goto_selected,;,Sends a bot to the selected nav area (useful for testing navigation meshes)Requires sv_cheats
+1Server only
+-bot_join_after_player,;,Default: 1If nonzero, bots wait until a player joins before entering the game.Server only
+-bot_join_team,;,Default: anyDetermines the team bots will join into. Allowed values: 'any', 'T', or 'CT'.Server only
+-bot_kick,;,bot_kick &lt;all&gt; &lt;t|ct&gt; &lt;type&gt; &lt;difficulty&gt; &lt;name&gt; - Kicks a specific bot, or
+all bots, matching the given criteria.Server only
+-bot_kill,;,bot_kill &lt;all&gt; &lt;t|ct&gt; &lt;type&gt; &lt;difficulty&gt; &lt;name&gt; - Kills a specific bot, or
+all bots, matching the given criteria.Requires sv_cheats 1Server only
+-bot_knives_only,;,Restricts the bots to only using knivesServer only
+-bot_loadout,;,Default: bots are given these items at round startRequires sv_cheats 1Server only
+-bot_max_vision_distance_override,;,Default: -1Min: -1Max distance bots can see targets.Requires sv_cheats 1Server only
+-bot_mimic,;,Default: 0Requires sv_cheats 1Server only
+-bot_mimic_yaw_offset,;,Default: 180Requires sv_cheats 1Server only
+-bot_pistols_only,;,Restricts the bots to only using pistolsServer only
+-bot_place,;,bot_place - Places a bot from the map at where the local player is pointing.Requires sv_cheats 1Server only
+-bot_quota,;,Default: 10Determines the total number of bots in the game.Server only
+-bot_quota_mode,;,Default: normalDetermines the type of quota.Allowed values: 'normal', 'fill', and 'match'.If 'fill',
+the server will adjust bots to keep N players in the game, where N is bot_quota.If 'match', the server will maintain a
+1:N ratio of humans to bots, where N is bot_quota.Server only
+-bot_randombuy,;,Default: 0should bots ignore their prefered weapons and just buy weapons at random?Requires sv_cheats
+1Server only
+-bot_show_battlefront,;,Default: 0Show areas where rushing players will initially meet.Requires sv_cheats 1Server only
+-bot_show_nav,;,Default: 0For internal testing purposes.Requires sv_cheats 1Server only
+-bot_show_occupy_time,;,Default: 0Show when each nav area can first be reached by each team.Requires sv_cheats 1Server
+only
+-bot_snipers_only,;,Restricts the bots to only using sniper riflesServer only
+-bot_stop,;,Default: 0If nonzero, immediately stops all bot processing.Requires sv_cheats 1Server only
+-bot_traceview,;,Default: 0For internal testing purposes.Requires sv_cheats 1Server only
+-bot_zombie,;,Default: 0If nonzero, bots will stay in idle mode and not attack.Requires sv_cheats 1Server only
+-buddha,;,Toggle. Player takes damage but won't die. (Shows red cross when health is zero)Requires sv_cheats 1Server
+only
+-bug_swap,;,Automatically swaps the current weapon for the bug bait and back again.Requires sv_cheats 1Server only
+-buyrandom,;,Buy random primary and secondary. Primarily for deathmatch where cost is not an issue.Server only
+-callvote,;,Start a vote on an issue.Server only
+-cast_hull,;,Tests hull collision detectionRequires sv_cheats 1Server only
+-cast_ray,;,Tests collision detectionRequires sv_cheats 1Server only
+-ch_createairboat,;,Spawn airboat in front of the player.Requires sv_cheats 1Server only
+-ch_createjeep,;,Spawn jeep in front of the player.Requires sv_cheats 1Server only
+-chet_debug_idle,;,Default: 0If set one, many debug prints to help track down the TLK_IDLE issue. Set two for super
+verbose infoServer only
+-cl_csm_server_status,;,Usage: cl_csm_server_statusServer only
+-clear_debug_overlays,;,clears debug overlaysServer only
+-collision_test,;,Tests collision systemRequires sv_cheats 1Server only
+-commentary_cvarsnotchanging,;,Server only
+-commentary_finishnode,;,Server only
+-computer_name,;,Spew computer nameServer only
+-create_flashlight,;,Requires sv_cheats 1Server only
+-CreatePredictionError,;,Create a prediction errorRequires sv_cheats 1Server only
+-creditsdone,;,Server only
+-cs_enable_player_physics_box,;,Default: 0Server only
+-cs_hostage_near_rescue_music_distance,;,Default: 2000Requires sv_cheats 1Server only
+-cs_make_vip,;,Marks a player as the VIPServer only
+-cs_ShowStateTransitions,;,Default: -2cs_ShowStateTransitions &lt;ent index or -1 for all&gt;. Show player state
+transitions.Requires sv_cheats 1Server only
+-CS_WarnFriendlyDamageInterval,;,Default: 3.0Defines how frequently the server notifies clients that a player damaged a
+friendRequires sv_cheats 1Server only
+-custom_bot_difficulty,;,Default: 0Bot difficulty for offline play.Server onlyClient only command
+-dbghist_addline,;,Add a line to the debug history. Format: &lt;category id&gt; &lt;line&gt;Server only
+-dbghist_dump,;,Dump the debug history to the console. Format: &lt;category id&gt; Categories: 0: Entity I/O 1: AI
+Decisions 2: Scene Print 3: Alyx Blind 4: Log of damage done to playerServer only
+-debug_visibility_monitor,;,Default: 0Requires sv_cheats 1Server only
+-dm_reset_spawns,;,Server only
+-drawcross,;,Draws a cross at the given locationArguments: x y zRequires sv_cheats 1Server only
+-drawline,;,Draws line between two 3D Points.Green if no collisionRed is collides with somethingArguments: x1 y1 z1 x2
+y2 z2Requires sv_cheats 1Server only
+-ds_get_newest_subscribed_files,;,Re-reads web api auth key and subscribed file lists from disk and downloads the latest
+updates of those files from steamServer only
+-dump_entity_sizes,;,Print sizeof(entclass)Server only
+-dump_globals,;,Dump all global entities/statesServer only
+-dumpentityfactories,;,Lists all entity factory names.Server only
+-dumpeventqueue,;,Dump the contents of the Entity I/O event queue to the console.Server only
+-dumpgamestringtable,;,Dump the contents of the game string table to the console.Requires sv_cheats 1Server only
+-enable_debug_overlays,;,Default: 1Enable rendering of debug overlaysRequires sv_cheats 1Server only
+-endround,;,End the current round.Requires sv_cheats 1Server only
+-ent_absbox,;,Displays the total bounding box for the given entity(s) in green. Some entites will also display entity
+specific overlays.Arguments: {entity_name} / {class_name} / no argument picks what player is looking atRequires
+sv_cheats 1Server only
+-ent_attachments,;,Displays the attachment points on an entity.Arguments: {entity_name} / {class_name} / no argument
+picks what player is looking atRequires sv_cheats 1Server only
+-ent_autoaim,;,Displays the entity's autoaim radius.Arguments: {entity_name} / {class_name} / no argument picks what
+player is looking atRequires sv_cheats 1Server only
+-ent_bbox,;,Displays the movement bounding box for the given entity(ies) in orange. Some entites will also display
+entity specific overlays.Arguments: {entity_name} / {class_name} / no argument picks what player is looking atRequires
+sv_cheats 1Server only
+-ent_cancelpendingentfires,;,Cancels all ent_fire created outputs that are currently waiting for their delay to
+expire.Server only
+-ent_create,;,Creates an entity of the given type where the player is looking.Requires sv_cheats 1Server only
+-ent_dump,;,Usage: ent_dump &lt;entity name&gt;Requires sv_cheats 1Server only
+-ent_fire,;,Usage: ent_fire &lt;target&gt; [action] [value] [delay]Requires sv_cheats 1Server only
+-ent_info,;,Usage: ent_info &lt;class name&gt;Requires sv_cheats 1Server only
+-ent_keyvalue,;,Applies the comma delimited key=value pairs to the entity with the given Hammer ID.Format: ent_keyvalue
+&lt;entity id&gt; &lt;key1&gt;=&lt;value1&gt;,&lt;key2&gt;=&lt;value2&gt;,...,&lt;keyN&gt;=&lt;valueN&gt;Requires
+sv_cheats 1Server only
+-ent_messages,;,Toggles input/output message display for the selected entity(ies). The name of the entity will be
+displayed as well as any messages that it sends or receives.Arguments: {entity_name} / {class_name} / no argument picks
+what player is looking atRequires sv_cheats 1Server only
+-ent_messages_draw,;,Default: 0Visualizes all entity input/output activity.Requires sv_cheats 1Server only
+-ent_name,;,Requires sv_cheats 1Server only
+-ent_orient,;,Orient the specified entity to match the player's angles. By default, only orients target entity's YAW.
+Use the 'allangles' option to orient on all axis.Format: ent_orient &lt;entity name&gt; &lt;optional:
+allangles&gt;Requires sv_cheats 1Server only
+-ent_pause,;,Toggles pausing of input/output message processing for entities. When turned on processing of all message
+will stop. Any messages displayed with 'ent_messages' will stop fading and be displayed indefinitely. To step through
+the messages one by one use 'ent_step'.Requires sv_cheats 1Server only
+-ent_pivot,;,Displays the pivot for the given entity(ies).(y=up=green, z=forward=blue, x=left=red). Arguments:
+{entity_name} / {class_name} / no argument picks what player is looking atRequires sv_cheats 1Server only
+-ent_rbox,;,Displays the total bounding box for the given entity(s) in green. Some entites will also display entity
+specific overlays.Arguments: {entity_name} / {class_name} / no argument picks what player is looking atRequires
+sv_cheats 1Server only
+-ent_remove,;,Removes the given entity(s)Arguments: {entity_name} / {class_name} / no argument picks what player is
+looking atRequires sv_cheats 1Server only
+-ent_remove_all,;,Removes all entities of the specified typeArguments: {entity_name} / {class_name}Requires sv_cheats
+1Server only
+-ent_rotate,;,Rotates an entity by a specified # of degreesRequires sv_cheats 1Server only
+-ent_script_dump,;,Dumps the names and values of this entity's script scope to the consoleArguments: {entity_name} /
+{class_name} / no argument picks what player is looking atRequires sv_cheats 1Server only
+-ent_setang,;,Set entity anglesRequires sv_cheats 1Server only
+-ent_setname,;,Sets the targetname of the given entity(s)Arguments: {new entity name} {entity_name} / {class_name} / no
+argument picks what player is looking atRequires sv_cheats 1Server only
+-ent_setpos,;,Move entity to positionRequires sv_cheats 1Server only
+-ent_show_response_criteria,;,Print, to the console, an entity's current criteria set used to select
+responses.Arguments: {entity_name} / {class_name} / no argument picks what player is looking atRequires sv_cheats
+1Server only
+-ent_step,;,When 'ent_pause' is set this will step through one waiting input / output message at a time.Requires
+sv_cheats 1Server only
+-ent_teleport,;,Teleport the specified entity to where the player is looking.Format: ent_teleport &lt;entity
+name&gt;Requires sv_cheats 1Server only
+-ent_text,;,Displays text debugging information about the given entity(ies) on top of the entity (See Overlay
+Text)Arguments: {entity_name} / {class_name} / no argument picks what player is looking atRequires sv_cheats 1Server
+only
+-ent_viewoffset,;,Displays the eye position for the given entity(ies) in red.Arguments: {entity_name} / {class_name} /
+no argument picks what player is looking atRequires sv_cheats 1Server only
+-explode,;,Kills the player with explosive damageServer only
+-explodevector,;,Kills a player applying an explosive force. Usage: explodevector &lt;player&gt; &lt;x value&gt; &lt;y
+value&gt; &lt;z value&gt;Server only
+-fadein,;,fadein {time r g b}: Fades the screen in from black or from the specified color over the given number of
+seconds.Requires sv_cheats 1Server only
+-fadeout,;,fadeout {time r g b}: Fades the screen to black or to the specified color over the given number of
+seconds.Requires sv_cheats 1Server only
+-find_ent,;,Find and list all entities with classnames or targetnames that contain the specified substring.Format:
+find_ent &lt;substring&gt;Requires sv_cheats 1Server only
+-find_ent_index,;,Display data for entity matching specified index.Format: find_ent_index &lt;index&gt;Requires
+sv_cheats 1Server only
+-firetarget,;,Requires sv_cheats 1Server only
+-fish_dormant,;,Default: 0Turns off interactive fish behavior. Fish become immobile and unresponsive.Requires sv_cheats
+1Server only
+-foundry_engine_get_mouse_control,;,Give the engine control of the mouse.Requires sv_cheats 1Server only
+-foundry_engine_release_mouse_control,;,Give the control of the mouse back to Hammer.Requires sv_cheats 1Server only
+-foundry_select_entity,;,Select the entity under the crosshair or select entities with the specified name.Requires
+sv_cheats 1Server only
+-foundry_sync_hammer_view,;,Move Hammer's 3D view to the same position as the engine's 3D view.Requires sv_cheats
+1Server only
+-foundry_update_entity,;,Updates the entity's position/angles when in edit modeRequires sv_cheats 1Server only
+-fx_new_sparks,;,Default: 1Use new style sparks.Requires sv_cheats 1Server only
+-g_debug_angularsensor,;,Default: 0Requires sv_cheats 1Server only
+-g_debug_constraint_sounds,;,Default: 0Enable debug printing about constraint sounds.Requires sv_cheats 1Server only
+-g_debug_trackpather,;,Default: 0Requires sv_cheats 1Server only
+-g_debug_vehiclebase,;,Default: 0Requires sv_cheats 1Server only
+-g_debug_vehicledriver,;,Default: 0Requires sv_cheats 1Server only
+-g_debug_vehicleexit,;,Default: 0Requires sv_cheats 1Server only
+-g_debug_vehiclesound,;,Default: 0Requires sv_cheats 1Server only
+-g_jeepexitspeed,;,Default: 100Requires sv_cheats 1Server only
+-game_mode,;,Default: 0The current game mode (based on game type). See GameModes.txt.Server onlyClient only command
+-game_type,;,Default: 0The current game type. See GameModes.txt.Server onlyClient only command
+-give,;,Give item to player.Arguments: &lt;item_name&gt;Server only
+-givecurrentammo,;,Give a supply of ammo for current weapon..Requires sv_cheats 1Server only
+-global_event_log_enabled,;,Default: 0Enables the global event log systemRequires sv_cheats 1Server only
+-global_set,;,global_set &lt;globalname&gt; &lt;state&gt;: Sets the state of the given env_global (0 = OFF, 1 = ON, 2 =
+DEAD).Requires sv_cheats 1Server only
+-god,;,Toggle. Player becomes invulnerable.Requires sv_cheats 1Server only
+-gods,;,Toggle. All players become invulnerable.Requires sv_cheats 1Server only
+-groundlist,;,Display ground entity list &lt;index&gt;Server only
+-hammer_update_entity,;,Updates the entity's position/angles when in edit modeServer only
+-hammer_update_safe_entities,;,Updates entities in the map that can safely be updated (don't have parents or are
+affected by constraints). Also excludes entities mentioned in any hammer_updateignorelist objects in this map.Server
+only
+-host_workshop_collection,;,Get the latest version of maps in a workshop collection and host them as a maplist.Server
+only
+-host_workshop_map,;,Get the latest version of the map and host it on this server.Server only
+-hostage_debug,;,Default: 0Show hostage AI debug informationRequires sv_cheats 1Server only
+-hostfile,;,Default: host.txtThe HOST file to load.Server only
+-hurtme,;,Hurts the player.Arguments: &lt;health to lose&gt;Requires sv_cheats 1Server only
+-inferno_child_spawn_interval_multiplier,;,Default: 0.1Amount spawn interval increases for each childRequires sv_cheats
+1Server only
+-inferno_child_spawn_max_depth,;,Default: 4Requires sv_cheats 1Server only
+-inferno_damage,;,Default: 40Damage per secondRequires sv_cheats 1Server only
+-inferno_debug,;,Default: 0Requires sv_cheats 1Server only
+-inferno_flame_lifetime,;,Default: 7Average lifetime of each flame in secondsRequires sv_cheats 1Server only
+-inferno_flame_spacing,;,Default: 42Minimum distance between separate flame spawnsRequires sv_cheats 1Server only
+-inferno_forward_reduction_factor,;,Default: 0.9Requires sv_cheats 1Server only
+-inferno_friendly_fire_duration,;,Default: 6For this long, FF is credited back to the thrower.Requires sv_cheats 1Server
+only
+-inferno_initial_spawn_interval,;,Default: 0.02Time between spawning flames for first fireRequires sv_cheats 1Server
+only
+-inferno_max_child_spawn_interval,;,Default: 0.5Largest time interval for child flame spawningRequires sv_cheats 1Server
+only
+-inferno_max_flames,;,Default: 16Maximum number of flames that can be createdRequires sv_cheats 1Server only
+-inferno_max_range,;,Default: 150Maximum distance flames can spread from their initial ignition pointRequires sv_cheats
+1Server only
+-inferno_per_flame_spawn_duration,;,Default: 3Duration each new flame will attempt to spawn new flamesRequires sv_cheats
+1Server only
+-inferno_scorch_decals,;,Default: 1Requires sv_cheats 1Server only
+-inferno_spawn_angle,;,Default: 45Angular change from parentRequires sv_cheats 1Server only
+-inferno_surface_offset,;,Default: 20Requires sv_cheats 1Server only
+-inferno_velocity_decay_factor,;,Default: 0.2Requires sv_cheats 1Server only
+-inferno_velocity_factor,;,Default: 0.003Requires sv_cheats 1Server only
+-inferno_velocity_normal_factor,;,Default: 0Requires sv_cheats 1Server only
+-kdtree_test,;,Tests spatial partition for entities queries.Requires sv_cheats 1Server only
+-kill,;,Kills the player with generic damageServer only
+-killvector,;,Kills a player applying force. Usage: killvector &lt;player&gt; &lt;x value&gt; &lt;y value&gt; &lt;z
+value&gt;Server only
+-listissues,;,List all the issues that can be voted on.Server only
+-listRecentNPCSpeech,;,Displays a list of the last 5 lines of speech from NPCs.Server only
+-loopsingleplayermaps,;,Default: 0Requires sv_cheats 1Server only
+-map_setbombradius,;,Sets the bomb radius for the map.Requires sv_cheats 1Server only
+-map_showbombradius,;,Shows bomb radius from the center of each bomb site and planted bomb.Requires sv_cheats 1Server
+only
+-map_showspawnpoints,;,Shows player spawn points (red=invalid). Optionally pass in the duration.Server only
+-motdfile,;,Default: motd.txtThe MOTD file to load.Server only
+-mp_autokick,;,Default: 1Kick idle/team-killing/team-damaging playersServer only
+-mp_autoteambalance,;,Default: 1Server only
+-mp_backup_restore_list_files,;,Lists recent backup round files matching the prefix, most recent files first, accepts a
+numeric parameter to limit the number of files displayedServer only
+-mp_backup_restore_load_autopause,;,Default: 1Whether to automatically pause the match after restoring round data from
+backupServer onlyNew in v1.33.1.0
+-mp_backup_restore_load_file,;,Loads player cash, KDA, scores and team scores; resets to the next round after the
+backupServer only
+-mp_backup_round_auto,;,Default: 1If enabled will keep in-memory backups to handle reconnecting players even if the
+backup files aren't written to diskServer onlyNew in v1.34.0.0
+-mp_backup_round_file,;,Default: backupIf set then server will save all played rounds information to files
+filename_date_time_team1_team2_mapname_roundnum_score1_score2.txtServer only
+-mp_backup_round_file_last,;,Default: Every time a backup file is written the value of this convar gets updated to hold
+the name of the backup file.Server only
+-mp_backup_round_file_pattern,;,Default: %prefix%_round%round%.txtIf set then server will save all played rounds
+information to files named by this pattern,
+e.g.'%prefix%_%date%_%time%_%team1%_%team2%_%map%_round%round%_score_%score1%_%score2%.txt'Server only
+-mp_competitive_endofmatch_extra_time,;,Default: 15After a competitive match finishes rematch voting extra time is given
+for rankings.Server only
+-mp_deathcam_skippable,;,Default: 1Determines whether a player can early-out of the deathcam.Server onlyNew in v1.33.3.0
+-mp_disable_autokick,;,Prevents a userid from being auto-kickedServer only
+-mp_dm_bonus_length_max,;,Default: 30Maximum time the bonus time will last (in seconds)Server only
+-mp_dm_bonus_length_min,;,Default: 30Minimum time the bonus time will last (in seconds)Server only
+-mp_dm_time_between_bonus_max,;,Default: 40Maximum time a bonus time will start after the round start or after the last
+bonus (in seconds)Server only
+-mp_dm_time_between_bonus_min,;,Default: 30Minimum time a bonus time will start after the round start or after the last
+bonus (in seconds)Server only
+-mp_dump_timers,;,Prints round timers to the console for debuggingServer only
+-mp_forcerespawnplayers,;,Force all players to respawn.Requires sv_cheats 1Server only
+-mp_forcewin,;,Forces team to winRequires sv_cheats 1Server only
+-mp_freezetime,;,Default: 6Min: 0, Max: 60how many seconds to keep players frozen when the round startsServer only
+-mp_hostages_max,;,Default: 2Maximum number of hostages to spawn.Server only
+-mp_hostages_run_speed_modifier,;,Default: 1.0Min: 0.1, Max: 1.5Default is 1.0, slow down hostages by setting this to
+&lt; 1.0.Server only
+-mp_hostages_spawn_farthest,;,Default: 0When enabled will consistently force the farthest hostages to spawn.Server only
+-mp_hostages_spawn_force_positions,;,Default: Comma separated list of zero based indices to force spawn positions, e.g.
+'0,2' or '1,6'Server only
+-mp_hostages_spawn_same_every_round,;,Default: 10 = spawn hostages randomly every round, 1 = same spawns for entire
+match.Server only
+-mp_humanteam,;,Default: anyRestricts human players to a single team {any, CT, T}Server only
+-mp_ignore_round_win_conditions,;,Default: 0Ignore conditions which would end the current roundServer only
+-mp_limitteams,;,Default: 2Min: 0, Max: 30Max # of players 1 team can have over another (0 disables check)Server only
+-mp_logdetail,;,Default: 0Min: 0, Max: 3Logs attacks. Values are: 0=off, 1=enemy, 2=teammate, 3=both)Server only
+-mp_pause_match,;,Pause the match in the next freeze timeServer only
+-mp_restartgame,;,Default: 0If non-zero, game will restart in the specified number of secondsServer only
+-mp_roundtime,;,Default: 5Min: 1, Max: 60How many minutes each round takes.Server only
+-mp_roundtime_defuse,;,Default: 0Min: 0, Max: 60How many minutes each round of Bomb Defuse takes. If 0 then use
+mp_roundtime instead.Server only
+-mp_roundtime_hostage,;,Default: 0Min: 0, Max: 60How many minutes each round of Hostage Rescue takes. If 0 then use
+mp_roundtime instead.Server only
+-mp_scrambleteams,;,Scramble the teams and restart the gameServer only
+-mp_spawnprotectiontime,;,Default: 5Kick players who team-kill within this many seconds of a round restart.Server only
+-mp_swapteams,;,Swap the teams and restart the gameServer only
+-mp_switchteams,;,Switch teams and restart the gameServer only
+-mp_td_dmgtokick,;,Default: 300The damage threshhold players have to exceed in a match to get kicked.Server only
+-mp_td_dmgtowarn,;,Default: 200The damage threshhold players have to exceed in a match to get warned that they are about
+to be kicked.Server only
+-mp_td_spawndmgthreshold,;,Default: 50The damage threshold players have to exceed at the start of the round to be
+warned/kick.Server only
+-mp_teamflag_1,;,Default: Enter a country's alpha 2 code to show that flag next to team 1's name in the spectator
+scoreboard.Server only
+-mp_teamflag_2,;,Default: Enter a country's alpha 2 code to show that flag next to team 2's name in the spectator
+scoreboard.Server only
+-mp_teamlogo_1,;,Default: Enter a team's shorthand image name to display their logo. Images can be found here:
+'resource/flash/econ/tournaments/teams'Server onlyNew in v1.34.7.2
+-mp_teamlogo_2,;,Default: Enter a team's shorthand image name to display their logo. Images can be found here:
+'resource/flash/econ/tournaments/teams'Server onlyNew in v1.34.7.2
+-mp_teammatchstat_1,;,Default: A non-empty string sets first team's match stat.Server onlyNew in v1.34.4.0
+-mp_teammatchstat_2,;,Default: A non-empty string sets second team's match stat.Server onlyNew in v1.34.4.0
+-mp_teammatchstat_cycletime,;,Default: 45Cycle match stats after so many secondsServer onlyNew in v1.34.4.1
+-mp_teammatchstat_holdtime,;,Default: 5Decide on a match stat and hold it additionally for at least so many
+secondsServer onlyNew in v1.34.4.1
+-mp_teammatchstat_txt,;,Default: A non-empty string sets the match stat description, e.g. 'Match 2 of 3'.Server onlyNew
+in v1.34.4.0
+-mp_teamname_1,;,Default: A non-empty string overrides the first team's name.Server only
+-mp_teamname_2,;,Default: A non-empty string overrides the second team's name.Server only
+-mp_teamprediction_pct,;,Default: 0A value between 1 and 99 will show predictions in favor of CT team.Server onlyNew in
+v1.34.4.0Modified in v1.34.4.1
+-mp_teamprediction_txt,;,Default: #SFUIHUD_Spectate_PredictionsA value between 1 and 99 will set predictions in favor of
+first team.Server onlyNew in v1.34.4.0
+-mp_tkpunish,;,Default: 0Will TK'ers and team damagers be punished in the next round? {0=no, 1=yes}Server only
+-mp_tournament_restart,;,Restart Tournament Mode on the current level.Server only
+-mp_unpause_match,;,Resume the matchServer only
+-mp_warmup_end,;,End warmup immediately.Server only
+-mp_warmup_start,;,Start warmup.Server only
+-nav_add_to_selected_set,;,Add current area to the selected set.Requires sv_cheats 1Server only
+-nav_add_to_selected_set_by_id,;,Add specified area id to the selected set.Requires sv_cheats 1Server only
+-nav_analyze,;,Re-analyze the current Navigation Mesh and save it to disk.Requires sv_cheats 1Server only
+-nav_analyze_scripted,;,commandline hook to run a nav_analyze and then quit.Requires sv_cheats 1Server only
+-nav_area_bgcolor,;,Default: 0 0 0 30RGBA color to draw as the background color for nav areas while editing.Requires
+sv_cheats 1Server only
+-nav_area_max_size,;,Default: 50Max area size created in nav generationRequires sv_cheats 1Server only
+-nav_avoid,;,Toggles the 'avoid this area when possible' flag used by the AI system.Requires sv_cheats 1Server only
+-nav_begin_area,;,Defines a corner of a new Area or Ladder. To complete the Area or Ladder, drag the opposite corner to
+the desired location and issue a 'nav_end_area' command.Requires sv_cheats 1Server only
+-nav_begin_deselecting,;,Start continuously removing from the selected set.Requires sv_cheats 1Server only
+-nav_begin_drag_deselecting,;,Start dragging a selection area.Requires sv_cheats 1Server only
+-nav_begin_drag_selecting,;,Start dragging a selection area.Requires sv_cheats 1Server only
+-nav_begin_selecting,;,Start continuously adding to the selected set.Requires sv_cheats 1Server only
+-nav_begin_shift_xy,;,Begin shifting the Selected Set.Requires sv_cheats 1Server only
+-nav_build_ladder,;,Attempts to build a nav ladder on the climbable surface under the cursor.Requires sv_cheats 1Server
+only
+-nav_check_connectivity,;,Checks to be sure every (or just the marked) nav area can get to every goal area for the map
+(hostages or bomb site).Requires sv_cheats 1Server only
+-nav_check_file_consistency,;,Scans the maps directory and reports any missing/out-of-date navigation files.Requires
+sv_cheats 1Server only
+-nav_check_floor,;,Updates the blocked/unblocked status for every nav area.Server only
+-nav_check_stairs,;,Update the nav mesh STAIRS attributeRequires sv_cheats 1Server onlyModified in v1.34.7.9
+-nav_chop_selected,;,Chops all selected areas into their component 1x1 areasRequires sv_cheats 1Server only
+-nav_clear_attribute,;,Remove given nav attribute from all areas in the selected set.Requires sv_cheats 1Server only
+-nav_clear_selected_set,;,Clear the selected set.Requires sv_cheats 1Server only
+-nav_clear_walkable_marks,;,Erase any previously placed walkable positions.Requires sv_cheats 1Server only
+-nav_compress_id,;,Re-orders area and ladder ID's so they are continuous.Requires sv_cheats 1Server only
+-nav_connect,;,To connect two Areas, mark the first Area, highlight the second Area, then invoke the connect command.
+Note that this creates a ONE-WAY connection from the first to the second Area. To make a two-way connection, also
+connect the second area to the first.Requires sv_cheats 1Server only
+-nav_coplanar_slope_limit,;,Default: 0.99Requires sv_cheats 1Server only
+-nav_coplanar_slope_limit_displacement,;,Default: 0.7Requires sv_cheats 1Server only
+-nav_corner_adjust_adjacent,;,Default: 18radius used to raise/lower corners in nearby areas when raising/lowering
+corners.Requires sv_cheats 1Server only
+-nav_corner_lower,;,Lower the selected corner of the currently marked Area.Requires sv_cheats 1Server only
+-nav_corner_place_on_ground,;,Places the selected corner of the currently marked Area on the ground.Requires sv_cheats
+1Server only
+-nav_corner_raise,;,Raise the selected corner of the currently marked Area.Requires sv_cheats 1Server only
+-nav_corner_select,;,Select a corner of the currently marked Area. Use multiple times to access all four
+corners.Requires sv_cheats 1Server only
+-nav_create_area_at_feet,;,Default: 0Anchor nav_begin_area Z to editing player's feetRequires sv_cheats 1Server only
+-nav_create_place_on_ground,;,Default: 0If true, nav areas will be placed flush with the ground when created by
+hand.Requires sv_cheats 1Server only
+-nav_crouch,;,Toggles the 'must crouch in this area' flag used by the AI system.Requires sv_cheats 1Server only
+-nav_debug_blocked,;,Default: 0Requires sv_cheats 1Server only
+-nav_delete,;,Deletes the currently highlighted Area.Requires sv_cheats 1Server only
+-nav_delete_marked,;,Deletes the currently marked Area (if any).Requires sv_cheats 1Server only
+-nav_disconnect,;,To disconnect two Areas, mark an Area, highlight a second Area, then invoke the disconnect command.
+This will remove all connections between the two Areas.Requires sv_cheats 1Server only
+-nav_displacement_test,;,Default: 10000Checks for nodes embedded in displacements (useful for in-development
+maps)Requires sv_cheats 1Server only
+-nav_dont_hide,;,Toggles the 'area is not suitable for hiding spots' flag used by the AI system.Requires sv_cheats
+1Server only
+-nav_draw_limit,;,Default: 500The maximum number of areas to draw in edit modeRequires sv_cheats 1Server only
+-nav_edit,;,Default: 0Set to one to interactively edit the Navigation Mesh. Set to zero to leave edit mode.Requires
+sv_cheats 1Server only
+-nav_end_area,;,Defines the second corner of a new Area or Ladder and creates it.Requires sv_cheats 1Server only
+-nav_end_deselecting,;,Stop continuously removing from the selected set.Requires sv_cheats 1Server only
+-nav_end_drag_deselecting,;,Stop dragging a selection area.Requires sv_cheats 1Server only
+-nav_end_drag_selecting,;,Stop dragging a selection area.Requires sv_cheats 1Server only
+-nav_end_selecting,;,Stop continuously adding to the selected set.Requires sv_cheats 1Server only
+-nav_end_shift_xy,;,Finish shifting the Selected Set.Requires sv_cheats 1Server only
+-nav_flood_select,;,Selects the current Area and all Areas connected to it, recursively. To clear a selection, use this
+command again.Requires sv_cheats 1Server only
+-nav_gen_cliffs_approx,;,Mark cliff areas, post-processing approximationRequires sv_cheats 1Server only
+-nav_generate,;,Generate a Navigation Mesh for the current map and save it to disk.Requires sv_cheats 1Server only
+-nav_generate_fencetops,;,Default: 1Autogenerate nav areas on fence and obstacle topsRequires sv_cheats 1Server only
+-nav_generate_fixup_jump_areas,;,Default: 1Convert obsolete jump areas into 2-way connectionsRequires sv_cheats 1Server
+only
+-nav_generate_incremental,;,Generate a Navigation Mesh for the current map and save it to disk.Requires sv_cheats
+1Server only
+-nav_generate_incremental_range,;,Default: 2000Requires sv_cheats 1Server only
+-nav_generate_incremental_tolerance,;,Default: 0Z tolerance for adding new nav areas.Requires sv_cheats 1Server only
+-nav_jump,;,Toggles the 'traverse this area by jumping' flag used by the AI system.Requires sv_cheats 1Server only
+-nav_ladder_flip,;,Flips the selected ladder's direction.Requires sv_cheats 1Server only
+-nav_load,;,Loads the Navigation Mesh for the current map.Requires sv_cheats 1Server only
+-nav_lower_drag_volume_max,;,Lower the top of the drag select volume.Requires sv_cheats 1Server only
+-nav_lower_drag_volume_min,;,Lower the bottom of the drag select volume.Requires sv_cheats 1Server only
+-nav_make_sniper_spots,;,Chops the marked area into disconnected sub-areas suitable for sniper spots.Requires sv_cheats
+1Server only
+-nav_mark,;,Marks the Area or Ladder under the cursor for manipulation by subsequent editing commands.Requires sv_cheats
+1Server only
+-nav_mark_attribute,;,Set nav attribute for all areas in the selected set.Requires sv_cheats 1Server only
+-nav_mark_unnamed,;,Mark an Area with no Place name. Useful for finding stray areas missed when Place Painting.Requires
+sv_cheats 1Server only
+-nav_mark_walkable,;,Mark the current location as a walkable position. These positions are used as seed locations when
+sampling the map to generate a Navigation Mesh.Requires sv_cheats 1Server only
+-nav_max_view_distance,;,Default: 0Maximum range for precomputed nav mesh visibility (0 = default 1500 units)Requires
+sv_cheats 1Server only
+-nav_max_vis_delta_list_length,;,Default: 64Requires sv_cheats 1Server only
+-nav_merge,;,To merge two Areas into one, mark the first Area, highlight the second by pointing your cursor at it, and
+invoke the merge command.Requires sv_cheats 1Server only
+-nav_merge_mesh,;,Merges a saved selected set into the current mesh.Requires sv_cheats 1Server only
+-nav_no_hostages,;,Toggles the 'hostages cannot use this area' flag used by the AI system.Requires sv_cheats 1Server
+only
+-nav_no_jump,;,Toggles the 'dont jump in this area' flag used by the AI system.Requires sv_cheats 1Server only
+-nav_place_floodfill,;,Sets the Place of the Area under the cursor to the curent Place, and 'flood-fills' the Place to
+all adjacent Areas. Flood-filling stops when it hits an Area with the same Place, or a different Place than that of the
+initial Area.Requires sv_cheats 1Server only
+-nav_place_list,;,Lists all place names used in the map.Requires sv_cheats 1Server only
+-nav_place_pick,;,Sets the current Place to the Place of the Area under the cursor.Requires sv_cheats 1Server only
+-nav_place_replace,;,Replaces all instances of the first place with the second place.Requires sv_cheats 1Server only
+-nav_place_set,;,Sets the Place of all selected areas to the current Place.Requires sv_cheats 1Server only
+-nav_potentially_visible_dot_tolerance,;,Default: 0.98Requires sv_cheats 1Server only
+-nav_precise,;,Toggles the 'dont avoid obstacles' flag used by the AI system.Requires sv_cheats 1Server only
+-nav_quicksave,;,Default: 0Set to one to skip the time consuming phases of the analysis. Useful for data collection and
+testing.Requires sv_cheats 1Server only
+-nav_raise_drag_volume_max,;,Raise the top of the drag select volume.Requires sv_cheats 1Server only
+-nav_raise_drag_volume_min,;,Raise the bottom of the drag select volume.Requires sv_cheats 1Server only
+-nav_recall_selected_set,;,Re-selects the stored selected set.Requires sv_cheats 1Server only
+-nav_remove_from_selected_set,;,Remove current area from the selected set.Requires sv_cheats 1Server only
+-nav_remove_jump_areas,;,Removes legacy jump areas, replacing them with connections.Requires sv_cheats 1Server only
+-nav_run,;,Toggles the 'traverse this area by running' flag used by the AI system.Requires sv_cheats 1Server only
+-nav_save,;,Saves the current Navigation Mesh to disk.Requires sv_cheats 1Server only
+-nav_save_selected,;,Writes the selected set to disk for merging into another mesh via nav_merge_mesh.Requires sv_cheats
+1Server only
+-nav_select_blocked_areas,;,Adds all blocked areas to the selected setRequires sv_cheats 1Server only
+-nav_select_damaging_areas,;,Adds all damaging areas to the selected setRequires sv_cheats 1Server only
+-nav_select_half_space,;,Selects any areas that intersect the given half-space.Requires sv_cheats 1Server only
+-nav_select_invalid_areas,;,Adds all invalid areas to the Selected Set.Requires sv_cheats 1Server only
+-nav_select_obstructed_areas,;,Adds all obstructed areas to the selected setRequires sv_cheats 1Server only
+-nav_select_overlapping,;,Selects nav areas that are overlapping others.Server only
+-nav_select_radius,;,Adds all areas in a radius to the selection setRequires sv_cheats 1Server only
+-nav_select_stairs,;,Adds all stairway areas to the selected setRequires sv_cheats 1Server only
+-nav_selected_set_border_color,;,Default: 100 100 0 255Color used to draw the selected set borders while
+editing.Requires sv_cheats 1Server only
+-nav_selected_set_color,;,Default: 255 255 200 96Color used to draw the selected set background while editing.Requires
+sv_cheats 1Server only
+-nav_set_place_mode,;,Sets the editor into or out of Place mode. Place mode allows labelling of Area with Place
+names.Requires sv_cheats 1Server only
+-nav_shift,;,Shifts the selected areas by the specified amountRequires sv_cheats 1Server only
+-nav_show_approach_points,;,Default: 0Show Approach Points in the Navigation Mesh.Requires sv_cheats 1Server only
+-nav_show_area_info,;,Default: 0.5Duration in seconds to show nav area ID and attributes while editingRequires sv_cheats
+1Server only
+-nav_show_compass,;,Default: 0Requires sv_cheats 1Server only
+-nav_show_continguous,;,Default: 0Highlight non-contiguous connectionsRequires sv_cheats 1Server only
+-nav_show_danger,;,Default: 0Show current 'danger' levels.Requires sv_cheats 1Server only
+-nav_show_light_intensity,;,Default: 0Requires sv_cheats 1Server only
+-nav_show_node_grid,;,Default: 0Requires sv_cheats 1Server only
+-nav_show_node_id,;,Default: 0Requires sv_cheats 1Server only
+-nav_show_nodes,;,Default: 0Requires sv_cheats 1Server only
+-nav_show_player_counts,;,Default: 0Show current player counts in each area.Requires sv_cheats 1Server only
+-nav_show_potentially_visible,;,Default: 0Show areas that are potentially visible from the current nav areaRequires
+sv_cheats 1Server only
+-nav_simplify_selected,;,Chops all selected areas into their component 1x1 areas and re-merges them together into larger
+areasRequires sv_cheats 1Server only
+-nav_slope_limit,;,Default: 0.7The ground unit normal's Z component must be greater than this for nav areas to be
+generated.Requires sv_cheats 1Server only
+-nav_slope_tolerance,;,Default: 0.1The ground unit normal's Z component must be this close to the nav area's Z component
+to be generated.Requires sv_cheats 1Server only
+-nav_snap_to_grid,;,Default: 0Snap to the nav generation grid when creating new nav areasRequires sv_cheats 1Server only
+-nav_solid_props,;,Default: 0Make props solid to nav generation/editingRequires sv_cheats 1Server only
+-nav_splice,;,To splice, mark an area, highlight a second area, then invoke the splice command to create a new,
+connected area between them.Requires sv_cheats 1Server only
+-nav_split,;,To split an Area into two, align the split line using your cursor and invoke the split command.Requires
+sv_cheats 1Server only
+-nav_split_place_on_ground,;,Default: 0If true, nav areas will be placed flush with the ground when split.Requires
+sv_cheats 1Server only
+-nav_stand,;,Toggles the 'stand while hiding' flag used by the AI system.Requires sv_cheats 1Server only
+-nav_stop,;,Toggles the 'must stop when entering this area' flag used by the AI system.Requires sv_cheats 1Server only
+-nav_store_selected_set,;,Stores the current selected set for later retrieval.Requires sv_cheats 1Server only
+-nav_strip,;,Strips all Hiding Spots, Approach Points, and Encounter Spots from the current Area.Requires sv_cheats
+1Server only
+-nav_subdivide,;,Subdivides all selected areas.Requires sv_cheats 1Server only
+-nav_test_node,;,Default: 0Requires sv_cheats 1Server only
+-nav_test_node_crouch,;,Default: 0Requires sv_cheats 1Server only
+-nav_test_node_crouch_dir,;,Default: 4Requires sv_cheats 1Server only
+-nav_test_stairs,;,Test the selected set for being on stairsRequires sv_cheats 1Server only
+-nav_toggle_deselecting,;,Start or stop continuously removing from the selected set.Requires sv_cheats 1Server only
+-nav_toggle_in_selected_set,;,Remove current area from the selected set.Requires sv_cheats 1Server only
+-nav_toggle_place_mode,;,Toggle the editor into and out of Place mode. Place mode allows labelling of Area with Place
+names.Requires sv_cheats 1Server only
+-nav_toggle_place_painting,;,Toggles Place Painting mode. When Place Painting, pointing at an Area will 'paint' it with
+the current Place.Requires sv_cheats 1Server only
+-nav_toggle_selected_set,;,Toggles all areas into/out of the selected set.Requires sv_cheats 1Server only
+-nav_toggle_selecting,;,Start or stop continuously adding to the selected set.Requires sv_cheats 1Server only
+-nav_transient,;,Toggles the 'area is transient and may become blocked' flag used by the AI system.Requires sv_cheats
+1Server only
+-nav_unmark,;,Clears the marked Area or Ladder.Requires sv_cheats 1Server only
+-nav_update_blocked,;,Updates the blocked/unblocked status for every nav area.Server only
+-nav_update_lighting,;,Recomputes lighting valuesRequires sv_cheats 1Server only
+-nav_update_visibility_on_edit,;,Default: 0If nonzero editing the mesh will incrementally recompue visibilityRequires
+sv_cheats 1Server only
+-nav_use_place,;,If used without arguments, all available Places will be listed. If a Place argument is given, the
+current Place is set.Requires sv_cheats 1Server only
+-nav_walk,;,Toggles the 'traverse this area by walking' flag used by the AI system.Requires sv_cheats 1Server only
+-nav_warp_to_mark,;,Warps the player to the marked area.Requires sv_cheats 1Server only
+-nav_world_center,;,Centers the nav mesh in the worldRequires sv_cheats 1Server only
+-nextmap_print_enabled,;,Default: 0When enabled prints next map to clientsServer onlyNew in v1.34.0.0
+-noclip,;,Toggle. Player becomes non-solid and flies. Optional argument of 0 or 1 to force enable/disableRequires
+sv_cheats 1Server only
+-noclip_fixup,;,Default: 1Requires sv_cheats 1Server only
+-notarget,;,Toggle. Player becomes hidden to NPCs.Requires sv_cheats 1Server only
+-npc_ally_deathmessage,;,Default: 1Requires sv_cheats 1Server only
+-npc_ammo_deplete,;,Subtracts half of the target's ammoServer only
+-npc_bipass,;,Displays the local movement attempts by the given NPC(s) (triangulation detours). Failed bypass routes are
+displayed in red, successful bypasses are shown in green.Arguments: {entity_name} / {class_name} / no argument picks
+what player is looking at.Requires sv_cheats 1Server only
+-npc_combat,;,Displays text debugging information about the squad and enemy of the selected NPC (See Overlay
+Text)Arguments: {npc_name} / {npc class_name} / no argument picks what player is looking atRequires sv_cheats 1Server
+only
+-npc_conditions,;,Displays all the current AI conditions that an NPC has in the overlay text.Arguments: {npc_name} /
+{npc class_name} / no argument picks what player is looking atRequires sv_cheats 1Server only
+-npc_create,;,Creates an NPC of the given type where the player is looking (if the given NPC can actually stand at that
+location). Arguments: [npc_class_name] [name of npc (optional) ] [addon type (optional) ] [name of addon (optional)
+]Requires sv_cheats 1Server only
+-npc_create_aimed,;,Creates an NPC aimed away from the player of the given type where the player is looking (if the
+given NPC can actually stand at that location). Note that this only works for npc classes that are already in the world.
+You can not create an entity that doesn't have an instance in the level.Arguments: {npc_class_name}Requires sv_cheats
+1Server only
+-npc_destroy,;,Removes the given NPC(s) from the universeArguments: {npc_name} / {npc_class_name} / no argument picks
+what player is looking atRequires sv_cheats 1Server only
+-npc_destroy_unselected,;,Removes all NPCs from the universe that aren't currently selectedRequires sv_cheats 1Server
+only
+-npc_enemies,;,Shows memory of NPC. Draws an X on top of each memory.Eluded entities drawn in blue (don't know where it
+went)Unreachable entities drawn in green (can't get to it)Current enemy drawn in redCurrent target entity drawn in
+magentaAll other entities drawn in pinkArguments: {npc_name} / {npc class_name} / no argument picks what player is
+looking atRequires sv_cheats 1Server only
+-npc_focus,;,Displays red line to NPC's enemy (if has one) and blue line to NPC's target entity (if has one)Arguments:
+{npc_name} / {npc class_name} / no argument picks what player is looking atRequires sv_cheats 1Server only
+-npc_freeze,;,Selected NPC(s) will freeze in place (or unfreeze). If there are no selected NPCs, uses the NPC under the
+crosshair.Arguments: -none-Requires sv_cheats 1Server only
+-npc_freeze_unselected,;,Freeze all NPCs not selectedServer only
+-npc_go,;,Selected NPC(s) will go to the location that the player is looking (shown with a purple box)Arguments:
+-none-Requires sv_cheats 1Server only
+-npc_go_random,;,Sends all selected NPC(s) to a random node.Arguments: -none-Requires sv_cheats 1Server only
+-npc_heal,;,Heals the target back to full healthServer only
+-npc_height_adjust,;,Default: 1Enable test mode for ik height adjustmentServer only
+-npc_kill,;,Kills the given NPC(s)Arguments: {npc_name} / {npc_class_name} / no argument picks what player is looking
+atRequires sv_cheats 1Server only
+-npc_nearest,;,Draw's a while box around the NPC(s) nearest nodeArguments: {entity_name} / {class_name} / no argument
+picks what player is looking atRequires sv_cheats 1Server only
+-npc_relationships,;,Displays the relationships between this NPC and all others.Arguments: {entity_name} / {class_name}
+/ no argument picks what player is looking atRequires sv_cheats 1Server only
+-npc_reset,;,Reloads schedules for all NPC's from their script filesArguments: -none-Requires sv_cheats 1Server only
+-npc_route,;,Displays the current route of the given NPC as a line on the screen. Waypoints along the route are drawn as
+small cyan rectangles. Line is color coded in the following manner:Blue - path to a nodeCyan - detour around an object
+(triangulation)Red - jumpMaroon - path to final target positionArguments: {npc_name} / {npc_class_name} / no argument
+picks what player is looking atRequires sv_cheats 1Server only
+-npc_select,;,Select or deselects the given NPC(s) for later manipulation. Selected NPC's are shown surrounded by a red
+translucent boxArguments: {entity_name} / {class_name} / no argument picks what player is looking atRequires sv_cheats
+1Server only
+-npc_set_freeze,;,Selected NPC(s) will freeze in place (or unfreeze). If there are no selected NPCs, uses the NPC under
+the crosshair.Arguments: -none-Requires sv_cheats 1Server only
+-npc_set_freeze_unselected,;,Freeze all NPCs not selectedServer only
+-npc_squads,;,Obsolete. Replaced by npc_combatRequires sv_cheats 1Server only
+-npc_steering,;,Displays the steering obstructions of the NPC (used to perform local avoidance)Arguments: {entity_name}
+/ {class_name} / no argument picks what player is looking atRequires sv_cheats 1Server only
+-npc_steering_all,;,Displays the steering obstructions of all NPCs (used to perform local avoidance)Requires sv_cheats
+1Server only
+-npc_task_text,;,Outputs text debugging information to the console about the all the tasks + break conditions of the
+selected NPC current scheduleArguments: {npc_name} / {npc class_name} / no argument picks what player is looking
+atRequires sv_cheats 1Server only
+-npc_tasks,;,Displays detailed text debugging information about the all the tasks of the selected NPC current schedule
+(See Overlay Text)Arguments: {npc_name} / {npc class_name} / no argument picks what player is looking atRequires
+sv_cheats 1Server only
+-npc_teleport,;,Selected NPC will teleport to the location that the player is looking (shown with a purple
+box)Arguments: -none-Requires sv_cheats 1Server only
+-npc_thinknow,;,Trigger NPC to thinkServer only
+-npc_viewcone,;,Displays the viewcone of the NPC (where they are currently looking and what the extents of there vision
+is)Arguments: {entity_name} / {class_name} / no argument picks what player is looking atRequires sv_cheats 1Server only
+-observer_use,;,Server only
+-particle_test_attach_attachment,;,Default: 0Attachment index for attachment modeRequires sv_cheats 1Server only
+-particle_test_attach_mode,;,Default: follow_attachmentPossible Values: 'start_at_attachment', 'follow_attachment',
+'start_at_origin', 'follow_origin'Requires sv_cheats 1Server only
+-particle_test_file,;,Default: Name of the particle system to dynamically spawnRequires sv_cheats 1Server only
+-particle_test_start,;,Dispatches the test particle system with the parameters specified in particle_test_file,
+particle_test_attach_mode and particle_test_attach_param on the entity the player is looking at.Arguments: {entity_name}
+/ {class_name} / no argument picks what player is looking atRequires sv_cheats 1Server only
+-particle_test_stop,;,Stops all particle systems on the selected entities.Arguments: {entity_name} / {class_name} / no
+argument picks what player is looking atRequires sv_cheats 1Server only
+-phys_show_active,;,Default: 0Requires sv_cheats 1Server only
+-physics_budget,;,Times the cost of each active objectServer only
+-physics_constraints,;,Highlights constraint system graph for an entityServer only
+-physics_debug_entity,;,Dumps debug info for an entityServer only
+-physics_highlight_active,;,Turns on the absbox for all active physics objectsServer only
+-physics_report_active,;,Lists all active physics objectsServer only
+-physics_select,;,Dumps debug info for an entityServer only
+-picker,;,Toggles 'picker' mode. When picker is on, the bounding box, pivot and debugging text is displayed for whatever
+entity the player is looking at.Arguments: full - enables all debug informationRequires sv_cheats 1Server only
+-player_debug_print_damage,;,Default: 0When true, print amount and type of all damage received by player to
+console.Requires sv_cheats 1Server only
+-print_mapgroup_sv,;,Prints the current mapgroup and the contained mapsServer only
+-prop_debug,;,Toggle prop debug mode. If on, props will show colorcoded bounding boxes. Red means ignore all damage.
+White means respond physically to damage but never break. Green maps health in the range of 100 down to 1.Requires
+sv_cheats 1Server only
+-prop_dynamic_create,;,Creates a dynamic prop with a specific .mdl aimed away from where the player is
+looking.Arguments: {.mdl name}Requires sv_cheats 1Server only
+-prop_physics_create,;,Creates a physics prop with a specific .mdl aimed away from where the player is
+looking.Arguments: {.mdl name}Requires sv_cheats 1Server only
+-r_JeepFOV,;,Default: 90Requires sv_cheats 1Server only
+-r_vehicleBrakeRate,;,Default: 1.5Requires sv_cheats 1Server only
+-radarvisdistance,;,Default: 1000.0fMin: 10at this distance and beyond you need to be point right at someone to see
+themRequires sv_cheats 1Server only
+-radarvismaxdot,;,Default: .996Min: 0, Max: 1how closely you have to point at someone to see them beyond max
+distanceRequires sv_cheats 1Server only
+-radarvismethod,;,Default: 1Min: 0, Max: 10 for traditional method, 1 for more realistic methodRequires sv_cheats
+1Server only
+-radarvispow,;,Default: .4the degree to which you can point away from a target, and still see them on radar.Requires
+sv_cheats 1Server only
+-report_entities,;,Lists all entitiesServer only
+-report_simthinklist,;,Lists all simulating/thinking entitiesServer only
+-report_soundpatch,;,reports sound patch countServer only
+-report_touchlinks,;,Lists all touchlinksServer only
+-reset_expo,;,Reset player scores, player controls, team scores, and end the roundRequires sv_cheats 1Server only
+-respawn_entities,;,Respawn all the entities in the map.Requires sv_cheats 1Server only
+-rr_followup_maxdist,;,Default: 1800'then ANY' or 'then ALL' response followups will be dispatched only to characters
+within this distance.Requires sv_cheats 1Server only
+-rr_forceconcept,;,fire a response concept directly at a given character.USAGE: rr_forceconcept &lt;target&gt;
+&lt;concept&gt; "criteria1:value1,criteria2:value2,..."criteria values are optional.Requires sv_cheats 1Server only
+-rr_reloadresponsesystems,;,Reload all response system scripts.Server only
+-rr_remarkable_max_distance,;,Default: 1200AIs will not even consider remarkarbles that are more than this many units
+away.Requires sv_cheats 1Server only
+-rr_remarkable_world_entities_replay_limit,;,Default: 1TLK_REMARKs will be dispatched no more than this many times for
+any given info_remarkableRequires sv_cheats 1Server only
+-rr_remarkables_enabled,;,Default: 1If 1, polling for info_remarkables and issuances of TLK_REMARK is enabled.Requires
+sv_cheats 1Server only
+-rr_thenany_score_slop,;,Default: 0.0When computing respondents for a 'THEN ANY' rule, all rule-matching scores within
+this much of the best score will be considered.Requires sv_cheats 1Server only
+-say,;,Display player messageServer only
+-say_team,;,Display player message to teamServer only
+-scene_flush,;,Flush all .vcds from the cache and reload from disk.Server only
+-scene_playvcd,;,Play the given VCD as an instanced scripted scene.Requires sv_cheats 1Server only
+-scene_showfaceto,;,Default: 0When playing back, show the directions of faceto events.Server only
+-scene_showlook,;,Default: 0When playing back, show the directions of look events.Server only
+-scene_showmoveto,;,Default: 0When moving, show the end location.Server only
+-scene_showunlock,;,Default: 0Show when a vcd is playing but normal AI is running.Server only
+-script,;,Run the text as a scriptServer only
+-script_debug,;,Connect the vscript VM to the script debuggerServer only
+-script_dump_all,;,Dump the state of the VM to the consoleServer only
+-script_execute,;,Run a vscript fileServer only
+-script_help,;,Output help for script functions, optionally with a search stringServer only
+-script_reload_code,;,Execute a vscript file, replacing existing functions with the functions in the run scriptServer
+only
+-script_reload_entity_code,;,Execute all of this entity's VScripts, replacing existing functions with the functions in
+the run scriptsServer only
+-script_reload_think,;,Execute an activation script, replacing existing functions with the functions in the run
+scriptServer only
+-send_round_backup_file_list,;,Server only
+-server_game_time,;,Gives the game time in seconds (server's curtime)Server only
+-servercfgfile,;,Default: server.cfgServer only
+-setang,;,Snap player eyes to specified pitch yaw &lt;roll:optional&gt; (must have sv_cheats).Requires sv_cheats 1Server
+only
+-setang_exact,;,Snap player eyes and orientation to specified pitch yaw &lt;roll:optional&gt; (must have
+sv_cheats).Requires sv_cheats 1Server only
+-setmodel,;,Changes's player's modelRequires sv_cheats 1Server only
+-setpos,;,Move player to specified origin (must have sv_cheats).Requires sv_cheats 1Server only
+-setpos_exact,;,Move player to an exact specified origin (must have sv_cheats).Requires sv_cheats 1Server only
+-setpos_player,;,Move specified player to specified origin (must have sv_cheats).Requires sv_cheats 1Server only
+-shake,;,Shake the screen.Requires sv_cheats 1Server only
+-showtriggers,;,Default: 0Shows trigger brushesRequires sv_cheats 1Server only
+-showtriggers_toggle,;,Toggle show triggersRequires sv_cheats 1Server only
+-skip_next_map,;,Skips the next map in the map rotation for the server.Server only
+-snd_sos_show_server_xmit,;,Default: 0Requires sv_cheats 1Server only
+-soundscape_debug,;,Default: 0When on, draws lines to all env_soundscape entities. Green lines show the active
+soundscape, red lines show soundscapes that aren't in range, and white lines show soundscapes that are in range, but not
+the active soundscape.Requires sv_cheats 1Server only
+-soundscape_flush,;,Flushes the server &amp; client side soundscapesServer only
+-spec_allow_roaming,;,Default: 0If nonzero, allow free-roaming spectator camera.Requires sv_cheats 1Server only
+-spec_freeze_time_lock,;,Default: 2.0Time players are prevented from skipping the freeze camServer only
+-suitvolume,;,Default: 0.25Server only
+-surfaceprop,;,Reports the surface properties at the cursorRequires sv_cheats 1Server only
+-sv_allow_votes,;,Default: 1Allow voting?Server only
+-sv_arms_race_vote_to_restart_disallowed_after,;,Default: 0Arms Race gun level after which vote to restart is
+disallowedServer only
+-sv_auto_full_alltalk_during_warmup_half_end,;,Default: 1When enabled will automatically turn on full all talk mode in
+warmup, at halftime and at the end of the matchServer onlyNew in v1.34.4.1
+-sv_benchmark_force_start,;,Force start the benchmark. This is only for debugging. It's better to set sv_benchmark to 1
+and restart the level.Server only
+-sv_broadcast_ugc_download_progress_interval,;,Default: 8Server onlyModified in v1.33.1.0
+-sv_broadcast_ugc_downloads,;,Default: 0Server onlyModified in v1.33.1.0
+-sv_clearhinthistory,;,Clear memory of server side hints displayed to the player.Server only
+-sv_clockcorrection_msecs,;,Default: 30The server tries to keep each player's m_nTickBase withing this many msecs of the
+server absolute tickcountServer only
+-sv_cs_dump_econ_item_stringtable,;,sv_cs_dump_econ_item_stringtableServer only
+-sv_damage_print_enable,;,Default: 1Turn this off to disable the player's damage feed in the console after getting
+killed.Server only
+-sv_dc_friends_reqd,;,Default: 0Set this to 0 to allow direct connects to a game in progress even if no presents are
+presentServer only
+-sv_debug_ugc_downloads,;,Default: 0Server onlyModified in v1.33.1.0
+-sv_force_transmit_players,;,Default: 1Will transmit players to all clients regardless of PVS checks.Server only
+-sv_game_mode_convars,;,Display the values of the convars for the current game_mode.Server only
+-sv_ignoregrenaderadio,;,Default: 0Turn off Fire in the hole messagesServer only
+-sv_kick_players_with_cooldown,;,Default: 1(0: do not kick on insecure servers; 1: kick players with Untrusted status or
+convicted by Overwatch; 2: kick players with any cooldown)Server onlyModified in v1.33.2.0
+-sv_lagcompensateself,;,Default: 0Player can lag compensate themselves.Requires sv_cheats 1Server onlyNew in v1.34.5.2
+-sv_lagcompensationforcerestore,;,Default: 1Don't test validity of a lag comp restore, just do it.Requires sv_cheats
+1Server only
+-sv_matchend_drops_enabled,;,Default: 1Rewards gameplay time is always accumulated for players, but drops at the end of
+the match can be preventedServer only
+-sv_maxusrcmdprocessticks,;,Default: 16Maximum number of client-issued usrcmd ticks that can be replayed in packet loss
+conditions, 0 to allow no restrictionsServer only
+-sv_maxusrcmdprocessticks_warning,;,Default: -1Print a warning when user commands get dropped due to insufficient usrcmd
+ticks allocated, number of seconds to throttle, negative disabledServer only
+-sv_pushaway_hostage_force,;,Default: 20000How hard the hostage is pushed away from physics objects (falls off with
+inverse square of distance).Requires sv_cheats 1Server only
+-sv_pushaway_max_hostage_force,;,Default: 1000Maximum of how hard the hostage is pushed away from physics
+objects.Requires sv_cheats 1Server only
+-sv_pvsskipanimation,;,Default: 1Skips SetupBones when npc's are outside the PVSServer only
+-sv_querycache_stats,;,Display status of the query cache (client only)Server only
+-sv_regeneration_force_on,;,Default: 0Cheat to test regenerative health systemsRequires sv_cheats 1Server only
+-sv_remove_old_ugc_downloads,;,Default: 1Server only
+-sv_showlagcompensation,;,Default: 0Show lag compensated hitboxes whenever a player is lag compensated.Requires
+sv_cheats 1Server only
+-sv_soundemitter_reload,;,Flushes the sounds.txt systemServer only
+-sv_soundscape_printdebuginfo,;,print soundscapesRequires sv_cheats 1Server only
+-sv_spawn_afk_bomb_drop_time,;,Default: 15Players that have never moved since they spawned will drop the bomb after this
+amount of time.Server only
+-sv_ugc_manager_max_new_file_check_interval_secs,;,Default: 1000Server onlyModified in v1.33.1.0
+-sv_usercmd_custom_random_seed,;,Default: 1When enabled server will populate an additional random seed independent of
+the clientServer onlyNew in v1.34.6.3Modified in v1.34.6.4
+-sv_vote_allow_in_warmup,;,Default: 0Allow voting during warmup?Server only
+-sv_vote_allow_spectators,;,Default: 0Allow spectators to vote?Server only
+-sv_vote_command_delay,;,Default: 2Max: 4.5How long after a vote passes until the action happensServer only
+-sv_vote_creation_timer,;,Default: 120How often someone can individually call a vote.Server only
+-sv_vote_failure_timer,;,Default: 300A vote that fails cannot be re-submitted for this longServer only
+-sv_vote_issue_kick_allowed,;,Default: 1Can people hold votes to kick players from the server?Server only
+-sv_vote_issue_loadbackup_allowed,;,Default: 1Can people hold votes to load match from backup?Server only
+-sv_vote_kick_ban_duration,;,Default: 15How long should a kick vote ban someone from the server? (in minutes)Server only
+-sv_vote_quorum_ratio,;,Default: 0.501Min: 0.01, Max: 1The minimum ratio of players needed to vote on an issue to
+resolve it.Server only
+-sv_vote_timer_duration,;,Default: 15How long to allow voting on an issueServer only
+-sv_workshop_allow_other_maps,;,Default: 1When hosting a workshop collection, users can play other workshop map on this
+server when it is empty and then mapcycle into this server collection.Server only
+-test_dispatcheffect,;,Test a clientside dispatch effect.Usage: test_dispatcheffect &lt;effect name&gt; &lt;distance
+away&gt; &lt;flags&gt; &lt;magnitude&gt; &lt;scale&gt;Defaults are: &lt;distance 1024&gt; &lt;flags 0&gt; &lt;magnitude
+0&gt; &lt;scale 0&gt;Requires sv_cheats 1Server only
+-Test_EHandle,;,Requires sv_cheats 1Server only
+-test_entity_blocker,;,Test command that drops an entity blocker out in front of the player.Requires sv_cheats 1Server
+only
+-Test_InitRandomEntitySpawner,;,Requires sv_cheats 1Server only
+-test_outtro_stats,;,Requires sv_cheats 1Server only
+-Test_ProxyToggle_EnableProxy,;,Requires sv_cheats 1Server only
+-Test_ProxyToggle_SetValue,;,Requires sv_cheats 1Server only
+-Test_RandomizeInPVS,;,Requires sv_cheats 1Server only
+-Test_RemoveAllRandomEntities,;,Requires sv_cheats 1Server only
+-Test_SpawnRandomEntities,;,Requires sv_cheats 1Server only
+-timeleft,;,prints the time remaining in the matchServer only
+-tv_allow_camera_man_steamid,;,Default: Allows tournament production cameraman to run csgo.exe -interactivecaster on
+SteamID 7650123456XXX and be the camera man.Server onlyNew in v1.34.6.9
+-tv_allow_static_shots,;,Default: 1Auto director uses fixed level cameras for shotsServer only
+-tv_delay,;,Default: 10Min: 0, Max: 120GOTV broadcast delay in secondsServer only
+-tv_delaymapchange,;,Default: 1Delays map change until broadcast is completeServer only
+-tv_relayradio,;,Default: 0Relay team radio commands to TV: 0=off, 1=onServer only
+-tv_relaytextchat,;,Default: 1Relay text chat data: 0=off, 1=say, 2=say+say_teamServer only
+-tv_time_remaining,;,Print remaining tv broadcast timeServer only
+-tweak_ammo_impulses,;,Allow real-time tweaking of the ammo impulse values.Requires sv_cheats 1Server only
+-use,;,Use a particular weapon Arguments: &lt;weapon_name&gt;Server only
+-vehicle_flushscript,;,Flush and reload all vehicle scriptsServer only
+-vis_force,;,Default: 0Requires sv_cheats 1Server only
+-vismon_poll_frequency,;,Default: .5Requires sv_cheats 1Server only
+-vismon_trace_limit,;,Default: 12Requires sv_cheats 1Server only
+-voice_player_speaking_delay_threshold,;,Default: 0.5fRequires sv_cheats 1Server only
+-voxeltree_box,;,View entities in the voxel-tree inside box &lt;Vector(min), Vector(max)&gt;.Requires sv_cheats 1Server
+only
+-voxeltree_playerview,;,View entities in the voxel-tree at the player position.Requires sv_cheats 1Server only
+-voxeltree_sphere,;,View entities in the voxel-tree inside sphere &lt;Vector(center), float(radius)&gt;.Requires
+sv_cheats 1Server only
+-voxeltree_view,;,View entities in the voxel-tree.Requires sv_cheats 1Server only
+-wc_air_edit_further,;,When in WC edit mode and editing air nodes, moves position of air node crosshair and placement
+location further away from playerRequires sv_cheats 1Server only
+-wc_air_edit_nearer,;,When in WC edit mode and editing air nodes, moves position of air node crosshair and placement
+location nearer to from playerRequires sv_cheats 1Server only
+-wc_air_node_edit,;,When in WC edit mode, toggles laying down or air nodes instead of ground nodesRequires sv_cheats
+1Server only
+-wc_create,;,When in WC edit mode, creates a node where the player is looking if a node is allowed at that location for
+the currently selected hull size (see ai_next_hull)Requires sv_cheats 1Server only
+-wc_destroy,;,When in WC edit mode, destroys the node that the player is nearest to looking at. (The node will be
+highlighted by a red box).Requires sv_cheats 1Server only
+-wc_destroy_undo,;,When in WC edit mode restores the last deleted nodeRequires sv_cheats 1Server only
+-wc_link_edit,;,Requires sv_cheats 1Server only
+-weapon_reload_database,;,Reload the weapon databaseRequires sv_cheats 1Server only
+-wipe_nav_attributes,;,Clear all nav attributes of selected area.Requires sv_cheats 1Server only
+-workshop_start_map,;,Sets the first map to load once a workshop collection been hosted. Takes the file id of desired
+start map as a parameter.Server only
+-xbox_autothrottle,;,Default: 1Server only
+-xbox_throttlebias,;,Default: 100Server only
+-xbox_throttlespoof,;,Default: 200Server only
+</div>
