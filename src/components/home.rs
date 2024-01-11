@@ -143,17 +143,20 @@ impl Home {
     fn input_widget(&mut self) -> Paragraph<'_> {
         let width = self.main_rect.width.max(3) - 3; // keep 2 for borders and 1 for cursor
         let scroll = self.input.visual_scroll(width as usize);
-        let text: Vec<Line> = match self.input.value().is_empty() {
-            true => vec!["".into()],
+        let text: Line = match self.input.value().is_empty() {
+            true => Line::from(""),
             false => match &self.input.suggestion {
                 Some(s) => {
-                    let cmd_len = self.input.value().len();
-                    vec![
-                        Line::from(self.input.value()),
-                        Line::from(s[cmd_len..].to_string()),
-                    ]
+                    let command_offset = self.input.value().len();
+                    let suggestion: String =
+                        (s.clone().drain(command_offset..).collect::<String>()).to_string();
+                    log::info!("Suggestion: {}", suggestion);
+                    Line::from(vec![
+                        Span::raw(self.input.value()),
+                        Span::from(suggestion).dim(),
+                    ])
                 }
-                _ => vec![Line::from(self.input.value())],
+                _ => Line::from(self.input.value()),
             },
         };
         Paragraph::new(text)
@@ -272,6 +275,10 @@ impl Component for Home {
                 }
                 KeyCode::Down => {
                     self.input.next();
+                    Action::Update
+                }
+                KeyCode::Right => {
+                    self.input.accept_suggestion();
                     Action::Update
                 }
                 _ => {

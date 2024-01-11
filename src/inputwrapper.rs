@@ -1,12 +1,13 @@
-use crate::command::{CommandAutoCompleter, CommandHistory};
 use crossterm::event::Event;
 use tui_input::{backend::crossterm::EventHandler, Input, StateChanged};
+
+use crate::command::{autocompleter::AutoCompleter, history::History};
 
 #[derive(Default)]
 pub struct Inputwrapper {
     input: Input,
-    history: CommandHistory,
-    suggester: CommandAutoCompleter,
+    history: History,
+    auto_completer: AutoCompleter,
     pub suggestion: Option<String>,
 }
 
@@ -14,8 +15,8 @@ impl Inputwrapper {
     pub fn new() -> Self {
         Self {
             input: Input::default(),
-            history: CommandHistory::new(),
-            suggester: CommandAutoCompleter::default(),
+            history: History::new(),
+            auto_completer: AutoCompleter::default(),
             suggestion: None,
         }
     }
@@ -83,9 +84,18 @@ impl Inputwrapper {
                 self.suggestion = None;
             }
             _ => {
-                self.suggestion = self.suggester.get_suggestion(value);
+                self.suggestion = self.auto_completer.get_suggestion(value);
                 log::info!("Suggestion: {:?}", self.suggestion);
             }
+        }
+    }
+
+    pub fn accept_suggestion(&mut self) {
+        match &self.suggestion {
+            Some(suggestion) => {
+                self.input = Input::new(suggestion.clone());
+            }
+            _ => {}
         }
     }
 }
