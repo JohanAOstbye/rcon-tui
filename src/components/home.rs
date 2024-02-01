@@ -207,7 +207,7 @@ impl Home {
             Row::new(vec!["/", "Enter Input"]),
             Row::new(vec!["ESC", "Exit Input"]),
             Row::new(vec!["Enter", "Submit Input"]),
-            Row::new(vec!["q", "Quit"]),
+            Row::new(vec!["Crtl + c", "Quit"]),
             Row::new(vec!["?", "Open Help"]),
         ];
         let table = Table::new(
