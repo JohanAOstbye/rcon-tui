@@ -104,8 +104,8 @@ jobs:
             echo "ASSET=$dirname.tar.gz" >> $GITHUB_ENV
           fi      - name: Releasing assets
         - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: |
-            ${{ env.ASSET }
+          uses: softprops/action-gh-release@v1
+          with:
+            files: |
+              ${{ env.ASSET }
 
