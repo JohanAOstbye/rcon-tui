@@ -413,7 +413,7 @@ mod tests {
     #[test]
     fn test_parse_color_rgb() {
         let color = parse_color("rgb123");
-        let expected = 36;
+        let expected = 67;
         assert_eq!(color, Some(Color::Indexed(expected)));
     }
 
@@ -430,7 +430,7 @@ mod tests {
             c.keybindings
                 .get(&Mode::Home)
                 .unwrap()
-                .get(&parse_key_sequence("<q>").unwrap_or_default())
+                .get(&parse_key_sequence("<Ctrl-c>").unwrap_or_default())
                 .unwrap(),
             &Action::Quit
         );
