@@ -25,7 +25,7 @@ impl History {
         }
     }
 
-    pub fn next(&mut self) -> Option<String> {
+    pub fn backwards(&mut self) -> Option<String> {
         if self.index < self.history.len() {
             self.index += 1;
             self.get(self.index)
@@ -34,7 +34,7 @@ impl History {
         }
     }
 
-    pub fn prev(&mut self) -> Option<String> {
+    pub fn forwards(&mut self) -> Option<String> {
         if self.index > 0 {
             self.index -= 1;
             self.get(self.index)

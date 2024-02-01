@@ -29,7 +29,7 @@ enum ParsingMode {
 
 impl Status {
     pub fn update(&mut self, st: String) {
-        let mut lines = st.split("\n").collect::<Vec<&str>>();
+        let mut lines = st.split('\n').collect::<Vec<&str>>();
         lines.reverse();
         info!("Updating status");
         let mut mode = ParsingMode::None;
@@ -38,36 +38,36 @@ impl Status {
             info!("line: {}, mode: {:?}", line, mode);
             match mode {
                 ParsingMode::None => {
-                    if line.starts_with("-") {
+                    if line.starts_with('-') {
                         mode = ParsingMode::Status;
                     }
                 }
                 ParsingMode::Status => match line {
                     line if line.starts_with("hostname") => {
                         self.servername =
-                            line.split(":").collect::<Vec<&str>>()[1].trim().to_string();
+                            line.split(':').collect::<Vec<&str>>()[1].trim().to_string();
                     }
                     line if line.starts_with("spawn") => {
                         let mut newspawn = "[".to_string();
-                        newspawn.push_str(line.split(":").collect::<Vec<&str>>()[1].trim());
+                        newspawn.push_str(line.split(':').collect::<Vec<&str>>()[1].trim());
 
                         spawn = newspawn;
                     }
-                    line if line.starts_with("-") => {
+                    line if line.starts_with('-') => {
                         mode = ParsingMode::Map;
                     }
                     _ => {}
                 },
                 ParsingMode::Map => match line {
                     line if line.contains(&spawn) => {
-                        self.map = line.split(":").collect::<Vec<&str>>()[3]
+                        self.map = line.split(':').collect::<Vec<&str>>()[3]
                             .trim()
                             .to_string()
-                            .split(" ")
+                            .split(' ')
                             .collect::<Vec<&str>>()[0]
                             .to_string();
                     }
-                    line if line.starts_with("-") => {
+                    line if line.starts_with('-') => {
                         mode = ParsingMode::Players;
                         let _ = lines.pop();
                     }

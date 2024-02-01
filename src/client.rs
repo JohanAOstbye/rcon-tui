@@ -63,10 +63,7 @@ impl Client {
     }
 
     pub fn is_connected(&self) -> bool {
-        match self.connection {
-            Some(_) => true,
-            None => false,
-        }
+        self.connection.is_some()
     }
 
     async fn send_command(&mut self, command: &str) -> Result<String, Error> {
@@ -76,7 +73,7 @@ impl Client {
                 let response = connection.cmd(command).await?;
                 log::info!("Response: {}", response);
                 self.send_action(Action::Insert(response.clone()));
-                return Ok(response);
+                Ok(response)
             }
             None => {
                 if self.address.is_empty() {
@@ -85,13 +82,13 @@ impl Client {
                 }
                 if self.password.is_empty() {
                     self.error("No password specified".to_owned()).await?;
-                    return Err(Error::Auth);
+                    Err(Error::Auth)
                 } else {
                     self.error("Not connected".to_owned()).await?;
-                    return Err(Error::Io(std::io::Error::new(
+                    Err(Error::Io(std::io::Error::new(
                         std::io::ErrorKind::Other,
                         "Not connected",
-                    )));
+                    )))
                 }
             }
         }
@@ -101,7 +98,7 @@ impl Client {
         let path = format!("cfg/{}.cfg", file);
         let contents = tokio::fs::read_to_string(path).await?;
         let mut responses = Vec::new();
-        for command in contents.split("\n") {
+        for command in contents.split('\n') {
             let response = self.send_command(command).await?;
             log::info!("command {}:\n{}", command, response);
             responses.push(response);
@@ -110,9 +107,9 @@ impl Client {
     }
 
     pub async fn run_command(&mut self, command: &str) -> Result<(), Error> {
-        match command.split(" ").collect::<Vec<&str>>().first() {
+        match command.split(' ').collect::<Vec<&str>>().first() {
             Some(&"connect") => {
-                let args = command.split(" ").collect::<Vec<&str>>();
+                let args = command.split(' ').collect::<Vec<&str>>();
                 if args.len() < 2 {
                     self.error("Not enough arguments".to_owned()).await?;
                     return Ok(());
@@ -145,7 +142,7 @@ impl Client {
                 self.send_action(Action::Connected(false));
             }
             Some(&"exec") => {
-                let args = command.split(" ").collect::<Vec<&str>>();
+                let args = command.split(' ').collect::<Vec<&str>>();
                 if args.len() < 2 {
                     self.error("Not enough arguments".to_owned()).await?;
                     return Ok(());
@@ -159,7 +156,7 @@ impl Client {
                 let response = self.send_command(command).await?;
             }
         }
-        return Ok(());
+        Ok(())
     }
 
     pub async fn async_update(&mut self, action: Action) {

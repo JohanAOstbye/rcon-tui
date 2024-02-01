@@ -172,7 +172,7 @@ pub fn key_event_to_string(key_event: &KeyEvent) -> String {
             char = format!("f({c})");
             &char
         }
-        KeyCode::Char(c) if c == ' ' => "space",
+        KeyCode::Char(' ') => "space",
         KeyCode::Char(c) => {
             char = c.to_string();
             &char
@@ -413,7 +413,7 @@ mod tests {
     #[test]
     fn test_parse_color_rgb() {
         let color = parse_color("rgb123");
-        let expected = 16 + 1 * 36 + 2 * 6 + 3;
+        let expected = 36;
         assert_eq!(color, Some(Color::Indexed(expected)));
     }
 

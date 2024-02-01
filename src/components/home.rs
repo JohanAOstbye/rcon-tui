@@ -212,7 +212,7 @@ impl Home {
         ];
         let table = Table::new(
             rows,
-            &[Constraint::Percentage(10), Constraint::Percentage(90)],
+            [Constraint::Percentage(10), Constraint::Percentage(90)],
         )
         .header(
             Row::new(vec!["Key", "Action"])
@@ -231,7 +231,7 @@ impl Home {
                     &self
                         .last_events
                         .iter()
-                        .map(|k| key_event_to_string(k))
+                        .map(key_event_to_string)
                         .collect::<Vec<_>>()
                 ))
                 .alignment(Alignment::Right),
@@ -247,7 +247,7 @@ impl Component for Home {
     }
 
     fn handle_key_events(&mut self, key: KeyEvent) -> Result<Option<Action>> {
-        self.last_events.push(key.clone());
+        self.last_events.push(key);
         let action = match self.mode {
             Mode::Normal | Mode::Processing | Mode::Help => return Ok(None),
             Mode::Insert => match key.code {
@@ -372,21 +372,17 @@ impl Component for Home {
         );
 
         // draw command descriptions
-        match self.input.get_current_command() {
-            Some(mut command) => {
-                f.render_widget(
-                    command.widget(),
-                    Rect {
-                        x: 0,
-                        y: 3,
-                        width: 40,
-                        height: 10,
-                    },
-                );
-            }
-            _ => {}
+        if let Some(mut command) = self.input.get_current_command() {
+            f.render_widget(
+                command.widget(),
+                Rect {
+                    x: 0,
+                    y: 3,
+                    width: 40,
+                    height: 10,
+                },
+            );
         }
-
         Ok(())
     }
 }

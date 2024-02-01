@@ -27,7 +27,7 @@ impl Inputwrapper {
     }
 
     pub fn value(&self) -> &str {
-        return self.input.value();
+        self.input.value()
     }
 
     pub fn reset(&mut self) {
@@ -35,25 +35,25 @@ impl Inputwrapper {
     }
 
     pub fn cursor(&self) -> usize {
-        return self.input.cursor();
+        self.input.cursor()
     }
 
     pub fn visual_scroll(&self, width: usize) -> usize {
-        return self.input.visual_scroll(width);
+        self.input.visual_scroll(width)
     }
 
     pub fn handle_event(&mut self, event: &Event) -> Option<StateChanged> {
         let state_changed = match event {
             Event::Key(key) => match key.code {
                 KeyCode::Up => {
-                    self.prev();
+                    self.forwards();
                     Some(StateChanged {
                         value: false,
                         cursor: false,
                     })
                 }
                 KeyCode::Down => {
-                    self.next();
+                    self.backwards();
                     Some(StateChanged {
                         value: false,
                         cursor: false,
@@ -81,18 +81,15 @@ impl Inputwrapper {
         }
     }
 
-    pub fn prev(&mut self) {
-        match self.history.prev() {
-            Some(command) => {
-                self.update_suggestion();
-                self.input = Input::new(command);
-            }
-            _ => {}
+    pub fn forwards(&mut self) {
+        if let Some(command) = self.history.forwards() {
+            self.update_suggestion();
+            self.input = Input::new(command);
         }
     }
 
-    pub fn next(&mut self) {
-        match self.history.next() {
+    pub fn backwards(&mut self) {
+        match self.history.backwards() {
             Some(command) => {
                 self.update_suggestion();
                 self.input = Input::new(command);
@@ -109,15 +106,13 @@ impl Inputwrapper {
     }
 
     pub fn update_suggestion(&mut self) {
-        let command_parts = self.input.value().split(" ").collect::<Vec<&str>>();
+        let command_parts = self.input.value().split(' ').collect::<Vec<&str>>();
         let value = command_parts[0];
         match value {
             "" => {
                 self.suggestion = None;
             }
-            _ if value == self.suggestion.clone().unwrap_or_default() => {
-                return;
-            }
+            _ if value == self.suggestion.clone().unwrap_or_default() => {}
             _ => {
                 self.suggestion = self
                     .auto_completer
@@ -128,18 +123,15 @@ impl Inputwrapper {
     }
 
     pub fn accept_suggestion(&mut self) {
-        match &self.suggestion {
-            Some(suggestion) => {
-                self.input = Input::new(suggestion.clone());
-            }
-            _ => {}
+        if let Some(suggestion) = &self.suggestion {
+            self.input = Input::new(suggestion.clone());
         }
     }
 
     pub fn get_current_command(&self) -> Option<Command> {
-        let command_parts = self.input.value().split(" ").collect::<Vec<&str>>();
+        let command_parts = self.input.value().split(' ').collect::<Vec<&str>>();
         let value = command_parts[0];
-        return self.auto_completer.get_command(value);
+        self.auto_completer.get_command(value)
     }
 }
 

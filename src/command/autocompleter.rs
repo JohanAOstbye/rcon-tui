@@ -23,25 +23,20 @@ impl AutoCompleter {
     pub fn load_commands(&mut self, path: &str) {
         let file = File::open(path).unwrap();
         let lines = BufReader::new(file).lines();
-        for line in lines {
-            match line {
-                Ok(line) => {
-                    let command: Vec<&str> = line.split("$").collect();
-                    let name = command[0];
-                    let description = command[1];
-                    if command.len() < 3 {
-                        self.add_command(Command::new(name, description, Vec::new()));
-                        continue;
-                    }
-                    let flags = command[2]
-                        .trim()
-                        .split(" ")
-                        .map(|e| e.to_string())
-                        .collect::<Vec<String>>();
-                    self.add_command(Command::new(name, description, flags));
-                }
-                Err(_) => {}
+        for line in lines.into_iter().flatten() {
+            let command: Vec<&str> = line.split('$').collect();
+            let name = command[0];
+            let description = command[1];
+            if command.len() < 3 {
+                self.add_command(Command::new(name, description, Vec::new()));
+                continue;
             }
+            let flags = command[2]
+                .trim()
+                .split(' ')
+                .map(|e| e.to_string())
+                .collect::<Vec<String>>();
+            self.add_command(Command::new(name, description, flags));
         }
     }
 
