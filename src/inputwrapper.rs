@@ -1,9 +1,9 @@
-use crossterm::event::Event;
+use crossterm::event::{Event, KeyCode, KeyEvent, MouseButton, MouseEvent, MouseEventKind};
+
 use tui_input::{backend::crossterm::EventHandler, Input, StateChanged};
 
-use crate::command::{autocompleter::AutoCompleter, history::History};
+use crate::command::{autocompleter::AutoCompleter, history::History, Command};
 
-#[derive(Default)]
 pub struct Inputwrapper {
     input: Input,
     history: History,
@@ -19,6 +19,11 @@ impl Inputwrapper {
             auto_completer: AutoCompleter::default(),
             suggestion: None,
         }
+    }
+
+    pub fn init(&mut self) {
+        self.auto_completer.load_commands(".config/commands.txt");
+        self.auto_completer.load_commands(".config/convars.txt");
     }
 
     pub fn value(&self) -> &str {
@@ -38,7 +43,33 @@ impl Inputwrapper {
     }
 
     pub fn handle_event(&mut self, event: &Event) -> Option<StateChanged> {
-        let state_changed = self.input.handle_event(event);
+        let state_changed = match event {
+            Event::Key(key) => match key.code {
+                KeyCode::Up => {
+                    self.prev();
+                    Some(StateChanged {
+                        value: false,
+                        cursor: false,
+                    })
+                }
+                KeyCode::Down => {
+                    self.next();
+                    Some(StateChanged {
+                        value: false,
+                        cursor: false,
+                    })
+                }
+                KeyCode::Tab => {
+                    self.accept_suggestion();
+                    Some(StateChanged {
+                        value: true,
+                        cursor: true,
+                    })
+                }
+                _ => self.input.handle_event(event),
+            },
+            _ => self.input.handle_event(event),
+        };
         match state_changed {
             Some(state_changed) => {
                 if state_changed.value {
@@ -78,13 +109,19 @@ impl Inputwrapper {
     }
 
     pub fn update_suggestion(&mut self) {
-        let value = self.input.value();
+        let command_parts = self.input.value().split(" ").collect::<Vec<&str>>();
+        let value = command_parts[0];
         match value {
             "" => {
                 self.suggestion = None;
             }
+            _ if value == self.suggestion.clone().unwrap_or_default() => {
+                return;
+            }
             _ => {
-                self.suggestion = self.auto_completer.get_suggestion(value);
+                self.suggestion = self
+                    .auto_completer
+                    .get_suggestion(value, self.suggestion.as_deref());
                 log::info!("Suggestion: {:?}", self.suggestion);
             }
         }
@@ -97,5 +134,19 @@ impl Inputwrapper {
             }
             _ => {}
         }
+    }
+
+    pub fn get_current_command(&self) -> Option<Command> {
+        let command_parts = self.input.value().split(" ").collect::<Vec<&str>>();
+        let value = command_parts[0];
+        return self.auto_completer.get_command(value);
+    }
+}
+
+impl Default for Inputwrapper {
+    fn default() -> Self {
+        let mut inputwrapper = Self::new();
+        inputwrapper.init();
+        inputwrapper
     }
 }

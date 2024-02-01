@@ -81,12 +81,13 @@ impl Component for FpsCounter {
         let rects = Layout::default()
             .direction(Direction::Vertical)
             .constraints(vec![
+                Constraint::Length(3), // skip first 3 rows
                 Constraint::Length(1), // first row
                 Constraint::Min(0),
             ])
             .split(rect);
 
-        let rect = rects[0];
+        let rect = rects[1];
 
         let s = format!(
             "{:.2} fps (app) {:.2} fps (render)",

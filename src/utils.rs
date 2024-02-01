@@ -115,7 +115,6 @@ pub fn get_log_dir() -> PathBuf {
     } else {
         PathBuf::from(".").join(".data")
     };
-    println!("{:?}", directory);
     directory
 }
 

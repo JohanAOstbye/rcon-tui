@@ -12,6 +12,7 @@ pub mod components;
 pub mod config;
 pub mod inputwrapper;
 pub mod mode;
+pub mod popup;
 pub mod tui;
 pub mod utils;
 

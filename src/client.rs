@@ -3,16 +3,22 @@ use std::path::Path;
 use futures::future::ok;
 use ratatui::{prelude::*, widgets::*};
 use rcon::{AsyncStdStream, Connection, Error};
-use tokio::sync::mpsc::UnboundedSender;
+use tokio::{
+    sync::mpsc::UnboundedSender,
+    time::{timeout, Duration},
+};
 
-use crate::action::Action;
-use log::error;
+use crate::{action::Action, command::status::Status};
+use log::{error, info};
 
 pub struct Client {
     connection: Option<Connection<AsyncStdStream>>,
     address: String,
     password: String,
     action_tx: Option<UnboundedSender<Action>>,
+    status_rate: usize,
+    ticks: usize,
+    status: Status,
 }
 
 impl Client {
@@ -22,6 +28,9 @@ impl Client {
             address: address.to_string(),
             password: password.to_string(),
             action_tx: None,
+            status_rate: 20,
+            ticks: 0,
+            status: Status::default(),
         }
     }
 
@@ -47,15 +56,10 @@ impl Client {
                 .connect(&self.address, &self.password)
                 .await?,
         );
-        if self.is_connected() {
-            if let Some(sender) = &self.action_tx {
-                log::info!("Sending action: {:?}", Action::Connected(true));
-                if let Err(e) = sender.send(Action::Connected(true)) {
-                    error!("Failed to send action: {:?}", e);
-                }
-            }
+        match self.is_connected() {
+            true => Ok(()),
+            false => Err(Error::Auth),
         }
-        Ok(())
     }
 
     pub fn is_connected(&self) -> bool {
@@ -71,12 +75,7 @@ impl Client {
                 log::info!("Sending command: {}", command);
                 let response = connection.cmd(command).await?;
                 log::info!("Response: {}", response);
-                if let Some(sender) = &self.action_tx {
-                    log::info!("Sending action: {:?}", Action::Insert(response.clone()));
-                    if let Err(e) = sender.send(Action::Insert(response.clone())) {
-                        error!("Failed to send action: {:?}", e);
-                    }
-                }
+                self.send_action(Action::Insert(response.clone()));
                 return Ok(response);
             }
             None => {
@@ -168,6 +167,31 @@ impl Client {
             Action::Command(command) => {
                 let _ = self.run_command(&command).await;
             }
+            Action::Tick => {
+                self.ticks += 1;
+                info!("Ticks: {}", self.ticks);
+                if self.ticks % self.status_rate == 0 {
+                    info!("Updating status");
+                    if let Some(connection) = self.connection.as_mut() {
+                        info!("Sending status command");
+                        match timeout(Duration::from_secs(5), connection.cmd("status")).await {
+                            Ok(status) => match status {
+                                Ok(status) => {
+                                    self.status.update(status);
+                                }
+                                Err(_) => {
+                                    self.connection = None;
+                                    self.send_action(Action::Connected(false));
+                                }
+                            },
+                            Err(_) => {
+                                self.connection = None;
+                                self.send_action(Action::Connected(false));
+                            }
+                        }
+                    }
+                }
+            }
             _ => {}
         }
     }
@@ -195,6 +219,9 @@ impl Default for Client {
             address: String::new(),
             password: String::new(),
             action_tx: None,
+            status_rate: 20,
+            ticks: 0,
+            status: Status::default(),
         }
     }
 }

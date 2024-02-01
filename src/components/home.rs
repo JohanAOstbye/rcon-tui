@@ -1,6 +1,6 @@
 use std::{collections::HashMap, process::Command, time::Duration};
 
-use color_eyre::eyre::Result;
+use color_eyre::{eyre::Result, owo_colors::OwoColorize};
 use crossterm::event::{KeyCode, KeyEvent, MouseButton, MouseEvent, MouseEventKind};
 use log::error;
 use ratatui::{
@@ -75,7 +75,7 @@ impl Home {
     }
 
     pub fn insert(&mut self, s: String) {
-        self.text.push(s)
+        self.text.insert(0, s)
     }
 
     pub fn remove(&mut self) {
@@ -126,8 +126,6 @@ impl Home {
         Paragraph::new(text)
             .block(
                 Block::default()
-                    .title("rcon client")
-                    .title_alignment(Alignment::Center)
                     .borders(Borders::ALL)
                     .border_style(match self.mode {
                         Mode::Processing => Style::default().fg(Color::Yellow),
@@ -147,10 +145,9 @@ impl Home {
             true => Line::from(""),
             false => match &self.input.suggestion {
                 Some(s) => {
-                    let command_offset = self.input.value().len();
+                    let command_offset = self.input.value().len().min(s.len());
                     let suggestion: String =
                         (s.clone().drain(command_offset..).collect::<String>()).to_string();
-                    log::info!("Suggestion: {}", suggestion);
                     Line::from(vec![
                         Span::raw(self.input.value()),
                         Span::from(suggestion).dim(),
@@ -168,6 +165,8 @@ impl Home {
             .block(
                 Block::default()
                     .borders(Borders::ALL)
+                    .title_alignment(Alignment::Right)
+                    .title_position(block::Position::Bottom)
                     .title(Line::from(vec![
                         Span::raw("Enter Input Mode "),
                         Span::styled("(Press ", Style::default().fg(Color::DarkGray)),
@@ -269,18 +268,6 @@ impl Component for Home {
                     }
                     Action::Update
                 }
-                KeyCode::Up => {
-                    self.input.prev();
-                    Action::Update
-                }
-                KeyCode::Down => {
-                    self.input.next();
-                    Action::Update
-                }
-                KeyCode::Right => {
-                    self.input.accept_suggestion();
-                    Action::Update
-                }
                 _ => {
                     self.input.handle_event(&crossterm::event::Event::Key(key));
                     Action::Update
@@ -328,8 +315,8 @@ impl Component for Home {
     }
 
     fn draw(&mut self, f: &mut Frame<'_>, rect: Rect) -> Result<()> {
-        let [main_rect, input_rect] = *Layout::default()
-            .constraints([Constraint::Percentage(100), Constraint::Min(3)].as_ref())
+        let [input_rect, main_rect] = *Layout::default()
+            .constraints([Constraint::Min(3), Constraint::Percentage(100)].as_ref())
             .split(rect)
         else {
             panic!("Unable to split rects into a refutable pattern");
@@ -375,6 +362,30 @@ impl Component for Home {
                 height: 1,
             },
         );
+
+        // draw title
+        f.render_widget(
+            Block::new()
+                .title("rcon-client")
+                .title_alignment(Alignment::Center),
+            f.size(),
+        );
+
+        // draw command descriptions
+        match self.input.get_current_command() {
+            Some(mut command) => {
+                f.render_widget(
+                    command.widget(),
+                    Rect {
+                        x: 0,
+                        y: 3,
+                        width: 40,
+                        height: 10,
+                    },
+                );
+            }
+            _ => {}
+        }
 
         Ok(())
     }

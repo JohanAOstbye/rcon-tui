@@ -107,6 +107,7 @@ impl App {
                 match action {
                     Action::Tick => {
                         self.last_tick_key_events.drain(..);
+                        self.client.async_update(action.clone()).await;
                     }
                     Action::Quit => self.should_quit = true,
                     Action::Suspend => self.should_suspend = true,
