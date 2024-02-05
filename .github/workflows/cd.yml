@@ -84,7 +84,7 @@ jobs:
         run: |
           dirname="${{ matrix.binary-name }}-${{ env.VERSION }}-${{ matrix.target }}"
           mkdir "$dirname"
-          mv "target/${{ matrix.target }}/release/${{ matrix.binary-name}}${{ matrix.binary-postfix }}" "$dirname"
+          mv "target/${{ matrix.target }}/release/${{ matrix.binary-name }}${{ matrix.binary-postfix }}" "$dirname"
 
 
           if [ "${{ matrix.os }}" = "windows-latest" ]; then
