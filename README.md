@@ -13,4 +13,4 @@ download the newest best release [here](https://github.com/JohanAOstbye/rcon-tui
 
 1. install rust and cargo [here](https://doc.rust-lang.org/cargo/getting-started/installation.html)
 2. clone the repo
-3. run ´cargo run´ to starte the tui
+3. run ´cargo run´ to start the tui
