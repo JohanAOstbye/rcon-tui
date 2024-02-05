@@ -85,7 +85,9 @@ jobs:
           dirname="${{ matrix.binary-name }}-${{ env.VERSION }}-${{ matrix.target }}"
           mkdir "$dirname"
           mv "target/${{ matrix.target }}/release/${{ matrix.binary-name }}${{ matrix.binary-postfix }}" "$dirname"
-
+          mv LICENSE README.md "$dirname"
+          mv .config "$dirname/.config"
+          mv cfg "$dirname/cfg"
 
           if [ "${{ matrix.os }}" = "windows-latest" ]; then
             7z a "$dirname.zip" "$dirname"
