@@ -5,7 +5,7 @@ A rcon terminal client
 ## install
 
 ### using releases
-download the newest best release [here](https://github.com/JohanAOstbye/rcon-tui/releases)
+download the newest release [here](https://github.com/JohanAOstbye/rcon-tui/releases)
 
 //TODO add instructions to add to path and run
 
